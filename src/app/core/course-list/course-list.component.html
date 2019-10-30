@@ -1,4 +1,15 @@
-<app-vc-search-panel></app-vc-search-panel>
+<div class="mat-app-background app-course-list-container">
 
+  <app-vc-search-panel></app-vc-search-panel>
 
-<app-vc-course-list-item *ngFor="let item of items" [item]="item"></app-vc-course-list-item>
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>
+      Add course
+    </button>
+  </mat-toolbar>
+
+  <app-vc-course-list-item *ngFor="let course of courses" [course]="course"></app-vc-course-list-item>
+
+</div>

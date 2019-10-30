@@ -6,7 +6,16 @@ import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
 import {SearchPanelComponent} from './search-panel/search-panel.component';
 import {FooterComponent} from './footer/footer.component';
-import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatLineModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatFormFieldModule,
+  MatIconModule, MatInputModule,
+  MatLineModule,
+  MatToolbarModule
+} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +35,10 @@ import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatLineMo
     MatButtonModule,
     MatCardModule,
     MatLineModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ]
 })
 export class CoreModule {

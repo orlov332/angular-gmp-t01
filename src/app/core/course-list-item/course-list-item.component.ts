@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CourseListItemComponent implements OnInit {
 
   @Input()
-  public item: string;
+  public course: string;
 
   constructor() {
   }

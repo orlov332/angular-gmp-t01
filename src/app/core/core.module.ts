@@ -6,6 +6,7 @@ import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
 import {SearchPanelComponent} from './search-panel/search-panel.component';
 import {FooterComponent} from './footer/footer.component';
+import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatLineModule, MatToolbarModule} from '@angular/material';
 
 
 @NgModule({
@@ -19,7 +20,13 @@ import {FooterComponent} from './footer/footer.component';
     FooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatLineModule,
+    MatChipsModule
   ]
 })
 export class CoreModule {

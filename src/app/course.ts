@@ -1,6 +1,15 @@
-export interface Course {
+export class Course {
 
-  id: bigint;
+
+  constructor(id: number, title: string, creationDate: Date, duration: number, description: string) {
+    this.id = id;
+    this.title = title;
+    this.creationDate = creationDate;
+    this.duration = duration;
+    this.description = description;
+  }
+
+  id: number;
   title: string;
   creationDate: Date;
   duration: number;

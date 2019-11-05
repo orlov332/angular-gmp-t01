@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Course} from '../../course';
 
 @Component({
   selector: 'app-vc-course-list-item',
@@ -8,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CourseListItemComponent implements OnInit {
 
   @Input()
-  public course: string;
+  public course: Course;
 
   constructor() {
   }

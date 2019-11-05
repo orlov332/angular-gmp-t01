@@ -1,24 +1,22 @@
 import {Component, OnInit} from '@angular/core';
+import {Course} from '../../course';
+import {CourseService} from '../../course-service';
 
 @Component({
   selector: 'app-vc-course-list',
   templateUrl: './course-list.component.html',
-  styleUrls: ['./course-list.component.scss']
+  styleUrls: ['./course-list.component.scss'],
+  providers: [CourseService]
 })
 export class CourseListComponent implements OnInit {
 
-  public courses: string[];
+  public courses: Course[];
 
-  constructor() { }
+  constructor(private courseService: CourseService) {
+  }
 
   ngOnInit() {
-    this.courses = [
-      'Video Course 1. Name Tag',
-      'Video Course 2. Name Tag',
-      'Video Course 3. Name Tag',
-      'Video Course 4. Name Tag',
-      'Video Course 5. Name Tag',
-    ];
+    this.courses = this.courseService.getCourses();
   }
 
 }

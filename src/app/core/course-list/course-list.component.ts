@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-vc-course-list',
@@ -13,10 +13,11 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit() {
     this.courses = [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
+      'Video Course 1. Name Tag',
+      'Video Course 2. Name Tag',
+      'Video Course 3. Name Tag',
+      'Video Course 4. Name Tag',
+      'Video Course 5. Name Tag',
     ];
   }
 

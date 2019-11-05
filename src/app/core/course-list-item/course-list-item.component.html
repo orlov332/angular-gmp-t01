@@ -1,9 +1,51 @@
 <div class="app-vc-course-list-item-container">
 
   <mat-card>
-    <mat-card-title>
-      {{course}}
-    </mat-card-title>
+
+    <mat-card-header>
+      <mat-card-title>
+        {{course}}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+
+        <div fxLayout="row">
+        <span class="with-icon">
+          <mat-icon>history</mat-icon>
+          <span>1h 38m</span>
+        </span>
+
+          <span class="with-icon">
+          <mat-icon>event</mat-icon>
+          <span>5 November 2019</span>
+        </span>
+        </div>
+
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>After the training attendees will be able to:
+        Write their own Angular application from scratch;
+        Write custom Angular components, form controls, pipes...
+        Use webpack/ng cli to build Angular application;
+        Use RxJS;
+        Test Angular applications via karma & jasmine.
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <span class="fill-remaining-space"></span>
+      <button mat-raised-button color="primary">
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+      <button mat-raised-button color="primary">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </mat-card-actions>
+
   </mat-card>
 
 </div>

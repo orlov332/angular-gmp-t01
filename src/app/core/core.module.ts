@@ -8,10 +8,12 @@ import {SearchPanelComponent} from './search-panel/search-panel.component';
 import {FooterComponent} from './footer/footer.component';
 import {
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
   MatChipsModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule,
+  MatIconModule,
+  MatInputModule,
   MatLineModule,
   MatToolbarModule
 } from '@angular/material';
@@ -38,7 +40,8 @@ import {FormsModule} from '@angular/forms';
     MatChipsModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule,
   ]
 })
 export class CoreModule {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-vc-search-panel',
@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class SearchPanelComponent implements OnInit {
   value: string;
 
-  constructor() { }
+  @Output()
+  search = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  onSearch() {
+    this.search.emit(this.value);
+  }
 }

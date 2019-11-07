@@ -18,11 +18,12 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {CourseDetailsComponent} from './course-details/course-details.component';
 
 
 @NgModule({
   declarations: [CourseListComponent, CourseListItemComponent, HeaderComponent,
-    BreadcrumbsComponent, SearchPanelComponent, FooterComponent],
+    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent],
   exports: [
     CourseListComponent,
     HeaderComponent,

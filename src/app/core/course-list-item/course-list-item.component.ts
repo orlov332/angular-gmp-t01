@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Course} from '../../course';
 
 @Component({
@@ -10,6 +10,9 @@ export class CourseListItemComponent implements OnInit {
 
   @Input()
   public course: Course;
+
+  @Output()
+  delete = new EventEmitter();
 
   constructor() {
   }

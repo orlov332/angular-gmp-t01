@@ -1,6 +1,6 @@
 <div class="mat-app-background app-course-list-container">
 
-  <app-vc-search-panel></app-vc-search-panel>
+  <app-vc-search-panel (search)="search($event)"></app-vc-search-panel>
 
   <mat-toolbar>
     <span class="fill-remaining-space"></span>
@@ -10,8 +10,9 @@
     </button>
   </mat-toolbar>
 
-  <app-vc-course-list-item *ngFor="let course of courses" [course]="course"></app-vc-course-list-item>
+  <app-vc-course-list-item *ngFor="let course of courses" [course]="course"
+                           (delete)="deleteCourse($event)"></app-vc-course-list-item>
 
-  <button mat-raised-button>Load more...</button>
+  <button (click)="loadMore()" mat-raised-button>Load more...</button>
 
 </div>

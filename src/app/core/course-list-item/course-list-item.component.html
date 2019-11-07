@@ -12,12 +12,12 @@
         <div fxLayout="row">
         <span class="with-icon">
           <mat-icon>history</mat-icon>
-          <span>{{course.duration}}</span>
+          <span>{{course.duration}} m</span>
         </span>
 
           <span class="with-icon">
           <mat-icon>event</mat-icon>
-          <span>{{course.creationDate}}</span>
+          <span>{{course.creationDate | date : 'mediumDate'}}</span>
         </span>
         </div>
 
@@ -34,7 +34,8 @@
         <mat-icon>edit</mat-icon>
         Edit
       </button>
-      <button mat-raised-button color="primary">
+      <button (click)="delete.emit(course.id)"
+              mat-raised-button color="primary">
         <mat-icon>delete</mat-icon>
         Delete
       </button>

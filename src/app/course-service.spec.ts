@@ -1,7 +1,23 @@
 import {CourseService} from './course-service';
+import {TestBed} from '@angular/core/testing';
 
 describe('CourseService', () => {
-  it('should create an instance', () => {
-    expect(new CourseService()).toBeTruthy();
+
+  let courseService: CourseService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({providers: [CourseService]});
+    courseService = TestBed.get(CourseService);
   });
+
+  it('should create an instance', () => {
+    expect(courseService).toBeTruthy();
+  });
+
+  it('should return course collection', () => {
+    const courses = courseService.getCourses();
+    expect(courses).toBeDefined();
+    expect(courses.length).toBeGreaterThan(0);
+  });
+
 });

@@ -17,7 +17,6 @@ import {CourseService} from '../../course-service';
   selector: 'app-vc-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss'],
-  providers: [CourseService]
 })
 export class CourseListComponent implements OnInit, OnChanges, DoCheck,
   AfterContentInit, AfterContentChecked,
@@ -37,9 +36,9 @@ export class CourseListComponent implements OnInit, OnChanges, DoCheck,
     this.courses = this.courseService.getCourses();
   }
 
-  deleteCourse(courseId: number) {
-    window.alert(`Delete course with id: ${courseId}`);
-    console.log(`Delete course with id: ${courseId}`);
+  deleteCourse(course: Course) {
+    window.alert(`Delete course with id: ${course.id}`);
+    console.log(`Delete course with id: ${course.id}`);
   }
 
   search(searchText: string) {

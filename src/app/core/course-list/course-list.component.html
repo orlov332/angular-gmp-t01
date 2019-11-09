@@ -10,8 +10,10 @@
     </button>
   </mat-toolbar>
 
-  <app-vc-course-list-item *ngFor="let course of courses" [course]="course"
-                           (delete)="deleteCourse($event)"></app-vc-course-list-item>
+  <app-vc-course-list-item *ngFor="let course of courses"
+                           [course]="course"
+                           (delete)="deleteCourse($event)">
+  </app-vc-course-list-item>
 
   <button (click)="loadMore()" mat-raised-button>Load more...</button>
 

@@ -2,7 +2,7 @@ import {Course} from './course';
 import {Injectable} from '@angular/core';
 import {TEST_COURSES} from './course-test-data';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CourseService {
 
   public getCourses(): Course[] {

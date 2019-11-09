@@ -1,4 +1,6 @@
-# AngularGmpT01
+# Angular Global Mentoring Program
+
+[![Build Status](https://travis-ci.com/orlov332/angular-gmp-t01.svg?branch=master)](https://travis-ci.com/orlov332/angular-gmp-t01)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.14.
 

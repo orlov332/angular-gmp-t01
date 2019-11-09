@@ -12,7 +12,7 @@ export class CourseListItemComponent implements OnInit {
   public course: Course;
 
   @Output()
-  delete = new EventEmitter();
+  delete = new EventEmitter<Course>();
 
   constructor() {
   }

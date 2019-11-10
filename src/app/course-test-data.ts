@@ -23,7 +23,8 @@ export const TEST_COURSES = [
     '        Write custom Angular components, form controls, pipes...\n' +
     '        Use webpack/ng cli to build Angular application;\n' +
     '        Use RxJS;\n' +
-    '        Test Angular applications via karma & jasmine.'
+    '        Test Angular applications via karma & jasmine.',
+    true
   ),
   new Course(
     333,

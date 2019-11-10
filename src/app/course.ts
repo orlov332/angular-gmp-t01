@@ -5,7 +5,8 @@ export class Course {
     public title: string,
     public creationDate: Date,
     public duration: number,
-    public description: string
+    public description: string,
+    public topRated = false,
   ) {
   }
 

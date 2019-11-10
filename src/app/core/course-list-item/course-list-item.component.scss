@@ -6,10 +6,19 @@
 .with-icon {
   display: flex;
   align-items: center;
+  margin-left: 10px;
 }
 
 mat-card {
   border-style: solid;
   border-width: 2px;
   border-color: grey;
+}
+
+.starred {
+  background-color: gold;
+}
+
+mat-card-subtitle {
+  display: inline-flex;
 }

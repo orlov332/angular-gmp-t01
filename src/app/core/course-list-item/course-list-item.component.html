@@ -4,7 +4,7 @@
             [ngClass]="{'starred': course.topRated}">
 
     <mat-card-header>
-      <mat-card-title>{{course.title}}</mat-card-title>
+      <mat-card-title>{{course.title | uppercase}}</mat-card-title>
 
       <mat-icon *ngIf="course.topRated">star</mat-icon>
 

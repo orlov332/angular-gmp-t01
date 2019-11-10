@@ -33,7 +33,7 @@ describe('CourseListItemComponent', () => {
 
   it('should draw course title', () => {
     const titleEl = element.querySelector('mat-card-title');
-    expect(titleEl.textContent).toEqual(testModel.title);
+    expect(titleEl.textContent).toEqual(testModel.title.toUpperCase());
   });
 
   it('should draw course description', () => {

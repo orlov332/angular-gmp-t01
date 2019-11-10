@@ -19,11 +19,12 @@ import {
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {CourseDetailsComponent} from './course-details/course-details.component';
+import {HighlightByTimelineDirective} from './highlight-by-timeline.directive';
 
 
 @NgModule({
   declarations: [CourseListComponent, CourseListItemComponent, HeaderComponent,
-    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent],
+    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent, HighlightByTimelineDirective],
   exports: [
     CourseListComponent,
     HeaderComponent,

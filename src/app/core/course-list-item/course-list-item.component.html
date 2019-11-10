@@ -1,6 +1,6 @@
 <div class="app-vc-course-list-item-container">
 
-  <mat-card>
+  <mat-card [appVcHighlightByTimeline]="course.creationDate">
 
     <mat-card-header>
       <mat-card-title>{{course.title}}</mat-card-title>

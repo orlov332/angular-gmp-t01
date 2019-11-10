@@ -16,7 +16,7 @@ export const TEST_COURSES = [
   new Course(
     222,
     'Video Course 2. Name Tag',
-    new Date(2019, 11, 4),
+    new Date(2019, 10, 4),
     120,
     'After the training attendees will be able to:\n' +
     '        Write their own Angular application from scratch;\n' +
@@ -28,7 +28,7 @@ export const TEST_COURSES = [
   new Course(
     333,
     'Video Course 3. Name Tag',
-    new Date(2019, 11, 3),
+    new Date(2019, 9, 3),
     103,
     'After the training attendees will be able to:\n' +
     '        Write their own Angular application from scratch;\n' +
@@ -40,7 +40,7 @@ export const TEST_COURSES = [
   new Course(
     444,
     'Video Course 4. Name Tag',
-    new Date(2019, 11, 2),
+    new Date(2019, 8, 2),
     45,
     'After the training attendees will be able to:\n' +
     '        Write their own Angular application from scratch;\n' +

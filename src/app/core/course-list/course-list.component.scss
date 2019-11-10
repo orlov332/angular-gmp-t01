@@ -1,3 +1,17 @@
 .app-course-list-container{
   padding: 10px 100px;
 }
+
+.no-data-container {
+  padding: 10px;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.load-more-button {
+  width: 100%;
+}

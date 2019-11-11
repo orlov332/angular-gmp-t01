@@ -1,6 +1,6 @@
 import {Course} from './course';
 import {Injectable} from '@angular/core';
-import {TEST_COURSES} from './course-test-data';
+import {TEST_COURSES} from './course-test.data';
 
 @Injectable({providedIn: 'root'})
 export class CourseService {

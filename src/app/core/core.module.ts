@@ -20,11 +20,12 @@ import {
 import {FormsModule} from '@angular/forms';
 import {CourseDetailsComponent} from './course-details/course-details.component';
 import {HighlightByTimelineDirective} from './highlight-by-timeline.directive';
+import {DurationPipe} from './duration.pipe';
 
 
 @NgModule({
   declarations: [CourseListComponent, CourseListItemComponent, HeaderComponent,
-    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent, HighlightByTimelineDirective],
+    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent, HighlightByTimelineDirective, DurationPipe],
   exports: [
     CourseListComponent,
     HeaderComponent,

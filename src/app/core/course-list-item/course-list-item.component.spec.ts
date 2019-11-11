@@ -3,6 +3,7 @@ import {CourseListItemComponent} from './course-list-item.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {TEST_COURSES} from '../../course-test.data';
 import {Course} from '../../course';
+import {DurationPipe} from '../duration.pipe';
 
 describe('CourseListItemComponent', () => {
   const testModel: Course = TEST_COURSES[0];
@@ -12,7 +13,7 @@ describe('CourseListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseListItemComponent],
+      declarations: [CourseListItemComponent, DurationPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

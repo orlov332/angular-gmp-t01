@@ -37,9 +37,9 @@ describe('CourseListComponent', () => {
     fixture = TestBed.createComponent(CourseListComponent);
 
     component = fixture.componentInstance;
-    spyOn(component, 'search');
-    spyOn(component, 'deleteCourse');
-    spyOn(component, 'loadMore');
+    spyOn(component, 'search').and.callThrough();
+    spyOn(component, 'deleteCourse').and.callThrough();
+    spyOn(component, 'loadMore').and.callThrough();
 
     searchComponent = fixture.debugElement.query(By.directive(SearchPanelComponent)).componentInstance;
     itemComponents = fixture.debugElement.queryAll(By.directive(CourseListItemComponent)).map(el => el.componentInstance);

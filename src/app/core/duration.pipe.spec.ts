@@ -19,5 +19,16 @@ describe('DurationPipe', () => {
     expect(durationPipe.transform(55)).toBe('55min');
   });
 
+  it('should accept zero value', () => {
+    expect(durationPipe.transform(0)).toBe('no data');
+  });
+
+  it('should accept null value', () => {
+    expect(durationPipe.transform(null)).toBe('no data');
+  });
+
+  it('should accept undefined value', () => {
+    expect(durationPipe.transform(undefined)).toBe('no data');
+  });
 
 });

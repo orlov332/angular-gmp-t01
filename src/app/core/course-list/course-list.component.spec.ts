@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseListComponent} from './course-list.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CourseService} from '../../course-service';
+import {OrderByPipe} from '../order-by.pipe';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -12,7 +13,7 @@ describe('CourseListComponent', () => {
     const courseServiceStub = jasmine.createSpyObj('CourseService', ['getCourses']);
 
     TestBed.configureTestingModule({
-      declarations: [CourseListComponent],
+      declarations: [CourseListComponent, OrderByPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [{provide: CourseService, useValue: courseServiceStub}]
     })

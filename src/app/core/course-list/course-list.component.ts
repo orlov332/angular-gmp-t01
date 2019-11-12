@@ -1,27 +1,14 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  DoCheck,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges
-} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Course} from '../../course';
 import {CourseService} from '../../course-service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-vc-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss'],
 })
-export class CourseListComponent implements OnInit, OnChanges, DoCheck,
-  AfterContentInit, AfterContentChecked,
-  AfterViewInit, AfterViewChecked,
-  OnDestroy {
+export class CourseListComponent implements OnInit {
 
   public courses: Course[];
 
@@ -42,8 +29,13 @@ export class CourseListComponent implements OnInit, OnChanges, DoCheck,
   }
 
   search(searchText: string) {
-    window.alert(`Search for string: ${searchText}`);
-    console.log(`Search for string: ${searchText}`);
+    if (searchText) {
+      this.courses = _.filter(this.courseService.getCourses(), (c: Course) => {
+        return c.title.toLowerCase().includes(searchText.toLowerCase());
+      });
+    } else {
+      this.courses = this.courseService.getCourses();
+    }
   }
 
   loadMore() {
@@ -53,40 +45,6 @@ export class CourseListComponent implements OnInit, OnChanges, DoCheck,
 
   private logIt(msg: string) {
     console.log(`#${this.nextId++} ${msg}`);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.logIt('ngOnChanges');
-  }
-
-  // Beware! Called frequently!
-  // Called in every change detection cycle anywhere on the page
-  ngDoCheck() {
-    this.logIt(`DoCheck`);
-  }
-
-  ngAfterContentInit() {
-    this.logIt(`AfterContentInit`);
-  }
-
-  // Beware! Called frequently!
-  // Called in every change detection cycle anywhere on the page
-  ngAfterContentChecked() {
-    this.logIt(`AfterContentChecked`);
-  }
-
-  ngAfterViewInit() {
-    this.logIt(`AfterViewInit`);
-  }
-
-  // Beware! Called frequently!
-  // Called in every change detection cycle anywhere on the page
-  ngAfterViewChecked() {
-    this.logIt(`AfterViewChecked`);
-  }
-
-  ngOnDestroy() {
-    this.logIt(`OnDestroy`);
   }
 
 }

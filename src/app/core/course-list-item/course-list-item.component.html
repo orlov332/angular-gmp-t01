@@ -1,23 +1,24 @@
 <div class="app-vc-course-list-item-container">
 
-  <mat-card>
+  <mat-card [appVcHighlightByTimeline]="course.creationDate"
+            [ngClass]="{'starred': course.topRated}">
 
     <mat-card-header>
-      <mat-card-title>{{course.title}}</mat-card-title>
+      <mat-card-title>{{course.title | uppercase}}</mat-card-title>
+
+      <mat-icon *ngIf="course.topRated">star</mat-icon>
 
       <mat-card-subtitle>
 
-        <div fxLayout="row">
         <span class="with-icon">
           <mat-icon>history</mat-icon>
-          <span>{{course.duration}} m</span>
+          <span>{{course.duration | duration}}</span>
         </span>
 
-          <span class="with-icon">
+        <span class="with-icon">
           <mat-icon>event</mat-icon>
           <span>{{course.creationDate | date : 'mediumDate'}}</span>
         </span>
-        </div>
 
       </mat-card-subtitle>
     </mat-card-header>

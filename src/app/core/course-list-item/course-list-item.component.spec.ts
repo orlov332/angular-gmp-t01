@@ -1,8 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseListItemComponent} from './course-list-item.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {TEST_COURSES} from '../../course-test-data';
+import {TEST_COURSES} from '../../course-test.data';
 import {Course} from '../../course';
+import {DurationPipe} from '../duration.pipe';
 
 describe('CourseListItemComponent', () => {
   const testModel: Course = TEST_COURSES[0];
@@ -12,8 +13,7 @@ describe('CourseListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      // imports: [],
-      declarations: [CourseListItemComponent],
+      declarations: [CourseListItemComponent, DurationPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
@@ -33,7 +33,7 @@ describe('CourseListItemComponent', () => {
 
   it('should draw course title', () => {
     const titleEl = element.querySelector('mat-card-title');
-    expect(titleEl.textContent).toEqual(testModel.title);
+    expect(titleEl.textContent).toEqual(testModel.title.toUpperCase());
   });
 
   it('should draw course description', () => {

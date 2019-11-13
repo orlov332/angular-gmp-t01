@@ -1,14 +1,25 @@
 <mat-form-field class="example-form-field">
-  <input #searchInput
-         [(ngModel)]="value"
+  <input [(ngModel)]="value"
          (keyup.enter)="onSearch()"
-         matInput type="text" placeholder="Text to search">
+         matInput
+         type="text"
+         placeholder="Text to search"
+         data-testid="search-input">
 
-  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; onSearch();">
+  <button *ngIf="value"
+          (click)="value=''; onSearch();"
+          mat-button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          data-testid="clear-btn">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
 
-<button (click)="onSearch()" mat-button color="primary">
+<button (click)="onSearch()"
+        mat-button
+        color="primary"
+        data-testid="search-btn">
   <mat-icon>search</mat-icon>
 </button>

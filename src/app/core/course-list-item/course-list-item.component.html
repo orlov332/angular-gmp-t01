@@ -4,7 +4,7 @@
             [ngClass]="{'starred': course.topRated}">
 
     <mat-card-header>
-      <mat-card-title>{{course.title | uppercase}}</mat-card-title>
+      <mat-card-title data-testid="title-text">{{course.title | uppercase}}</mat-card-title>
 
       <mat-icon *ngIf="course.topRated">star</mat-icon>
 
@@ -24,7 +24,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <p>{{course.description}}</p>
+      <p data-testid="description-text">{{course.description}}</p>
     </mat-card-content>
 
     <mat-card-actions>
@@ -34,7 +34,9 @@
         Edit
       </button>
       <button (click)="delete.emit(course)"
-              mat-raised-button color="primary">
+              mat-raised-button
+              color="primary"
+              data-testid="delete-btn">
         <mat-icon>delete</mat-icon>
         Delete
       </button>

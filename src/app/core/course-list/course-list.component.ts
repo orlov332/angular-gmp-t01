@@ -12,14 +12,10 @@ export class CourseListComponent implements OnInit {
 
   public courses: Course[];
 
-  private nextId = 0;
-
   constructor(private courseService: CourseService) {
-    this.logIt('Constructor');
   }
 
   ngOnInit() {
-    this.logIt('ngOnInit');
     this.courses = this.courseService.getCourses();
   }
 
@@ -31,7 +27,7 @@ export class CourseListComponent implements OnInit {
   search(searchText: string) {
     if (searchText) {
       this.courses = _.filter(this.courseService.getCourses(), (c: Course) => {
-        return c.title.toLowerCase().includes(searchText.toLowerCase());
+        return c.title && c.title.toLowerCase().includes(searchText.toLowerCase());
       });
     } else {
       this.courses = this.courseService.getCourses();
@@ -41,10 +37,6 @@ export class CourseListComponent implements OnInit {
   loadMore() {
     window.alert('Load next page of courses...');
     console.log('Load next page of courses...');
-  }
-
-  private logIt(msg: string) {
-    console.log(`#${this.nextId++} ${msg}`);
   }
 
 }

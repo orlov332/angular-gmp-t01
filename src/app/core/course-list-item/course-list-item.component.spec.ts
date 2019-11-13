@@ -4,6 +4,9 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {TEST_COURSES} from '../../course-test.data';
 import {Course} from '../../course';
 import {DurationPipe} from '../duration.pipe';
+import {MockDirective, MockPipe} from 'ng-mocks';
+import {HighlightByTimelineDirective} from '../highlight-by-timeline.directive';
+import {getByTestId, getNodeText} from '@testing-library/dom';
 
 describe('CourseListItemComponent', () => {
   const testModel: Course = TEST_COURSES[0];
@@ -13,7 +16,9 @@ describe('CourseListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseListItemComponent, DurationPipe],
+      declarations: [CourseListItemComponent,
+        MockPipe(DurationPipe, e => e.toString()),
+        MockDirective(HighlightByTimelineDirective)],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
@@ -32,22 +37,21 @@ describe('CourseListItemComponent', () => {
   });
 
   it('should draw course title', () => {
-    const titleEl = element.querySelector('mat-card-title');
-    expect(titleEl.textContent).toEqual(testModel.title.toUpperCase());
+    expect(getNodeText(getByTestId(element, 'title-text')))
+      .toEqual(testModel.title.toUpperCase());
   });
 
   it('should draw course description', () => {
-    const descEl = element.querySelector('mat-card-content > p');
-    expect(descEl.textContent).toEqual(testModel.description);
+    expect(getNodeText(getByTestId(element, 'description-text')))
+      .toEqual(testModel.description);
   });
 
   it('should rise delete event when delete clicked', () => {
-    let deletedCourse: Course;
+    let deletedCourse: Course = null;
 
     component.delete.subscribe((course: Course) => deletedCourse = course);
 
-    const delBtnEl = element.querySelector<HTMLElement>('mat-card-actions > button:last-child');
-    delBtnEl.click();
+    getByTestId(element, 'delete-btn').click();
 
     expect(deletedCourse).toBe(testModel);
   });

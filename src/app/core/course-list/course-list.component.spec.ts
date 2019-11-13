@@ -1,5 +1,4 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {CourseListComponent} from './course-list.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CourseService} from '../../course-service';
@@ -9,7 +8,9 @@ import {SearchPanelComponent} from '../search-panel/search-panel.component';
 import {CourseListItemComponent} from '../course-list-item/course-list-item.component';
 import {By} from '@angular/platform-browser';
 import {TEST_COURSES} from '../../course-test.data';
-import {of} from 'rxjs';
+import {getByTestId, queryByTestId} from '@testing-library/dom';
+import {FormsModule} from '@angular/forms';
+
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -19,15 +20,16 @@ describe('CourseListComponent', () => {
 
   beforeEach(async(() => {
     const courseServiceStub = jasmine.createSpyObj('CourseService', ['getCourses']);
-    courseServiceStub.getCourses.and.returnValue(of(TEST_COURSES));
+    courseServiceStub.getCourses.and.returnValue(TEST_COURSES);
 
     TestBed.configureTestingModule({
       declarations: [
         CourseListComponent,
-        MockPipe(OrderByPipe),
+        MockPipe(OrderByPipe, e => e),
         MockComponent(SearchPanelComponent),
         MockComponent(CourseListItemComponent)],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [FormsModule],
       providers: [{provide: CourseService, useValue: courseServiceStub}]
     })
       .compileComponents();
@@ -41,10 +43,10 @@ describe('CourseListComponent', () => {
     spyOn(component, 'deleteCourse').and.callThrough();
     spyOn(component, 'loadMore').and.callThrough();
 
+    fixture.detectChanges();
+
     searchComponent = fixture.debugElement.query(By.directive(SearchPanelComponent)).componentInstance;
     itemComponents = fixture.debugElement.queryAll(By.directive(CourseListItemComponent)).map(el => el.componentInstance);
-
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -64,7 +66,35 @@ describe('CourseListComponent', () => {
   });
 
   it('should get courses list from service', () => {
-    expect(TestBed.get(CourseService).getCourses.calls.count())
-      .toBe(1, 'spy method was called once');
+    expect(TestBed.get(CourseService).getCourses)
+      .toHaveBeenCalled();
   });
+
+  it('should load more data', () => {
+    getByTestId(fixture.debugElement.nativeElement, 'load-more-btn').click();
+    expect(component.loadMore).toHaveBeenCalled();
+  });
+
+  it('should delete course', () => {
+    itemComponents[0].delete.emit(TEST_COURSES[0]);
+    expect(component.deleteCourse).toHaveBeenCalled();
+  });
+
+  it('should hide courses list if empty course list', () => {
+    component.courses = [];
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.directive(CourseListItemComponent)))
+      .toBeFalsy('there are not course item');
+    expect(queryByTestId(fixture.debugElement.nativeElement, 'load-more-btn'))
+      .toBeFalsy('hide load more button');
+    expect(queryByTestId(fixture.debugElement.nativeElement, 'no-data-placeholder'))
+      .toBeTruthy('show no data placeholder');
+  });
+
+  it('should hide no data placeholder if not empty course list', () => {
+    expect(queryByTestId(fixture.debugElement.nativeElement, 'no-data-placeholder'))
+      .toBeFalsy('show no data placeholder');
+  });
+
 });

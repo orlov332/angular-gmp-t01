@@ -26,7 +26,8 @@ import {OrderByPipe} from './order-by.pipe';
 
 @NgModule({
   declarations: [CourseListComponent, CourseListItemComponent, HeaderComponent,
-    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent, HighlightByTimelineDirective, DurationPipe, OrderByPipe],
+    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent,
+    HighlightByTimelineDirective, DurationPipe, OrderByPipe],
   exports: [
     CourseListComponent,
     HeaderComponent,

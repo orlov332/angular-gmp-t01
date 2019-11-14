@@ -19,8 +19,8 @@ describe('CourseListComponent', () => {
   let fixture: ComponentFixture<CourseListComponent>;
 
   beforeEach(async(() => {
-    const courseServiceStub = jasmine.createSpyObj('CourseService', ['getCourses']);
-    courseServiceStub.getCourses.and.returnValue(TEST_COURSES);
+    const courseServiceStub = jasmine.createSpyObj('CourseService', ['getList']);
+    courseServiceStub.getList.and.returnValue(TEST_COURSES);
 
     TestBed.configureTestingModule({
       declarations: [
@@ -66,7 +66,7 @@ describe('CourseListComponent', () => {
   });
 
   it('should get courses list from service', () => {
-    expect(TestBed.get(CourseService).getCourses)
+    expect(TestBed.get(CourseService).getList)
       .toHaveBeenCalled();
   });
 

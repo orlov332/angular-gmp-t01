@@ -16,7 +16,7 @@ export class CourseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.courses = this.courseService.getList();
   }
 
   deleteCourse(course: Course) {
@@ -26,11 +26,11 @@ export class CourseListComponent implements OnInit {
 
   search(searchText: string) {
     if (searchText) {
-      this.courses = _.filter(this.courseService.getCourses(), (c: Course) => {
+      this.courses = _.filter(this.courseService.getList(), (c: Course) => {
         return c.title && c.title.toLowerCase().includes(searchText.toLowerCase());
       });
     } else {
-      this.courses = this.courseService.getCourses();
+      this.courses = this.courseService.getList();
     }
   }
 

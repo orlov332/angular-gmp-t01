@@ -15,7 +15,7 @@ describe('CourseService', () => {
   });
 
   it('should return course collection', () => {
-    const courses = courseService.getCourses();
+    const courses = courseService.getList();
     expect(courses).toBeDefined();
     expect(courses.length).toBeGreaterThan(0);
   });

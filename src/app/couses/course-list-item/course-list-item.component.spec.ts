@@ -1,12 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseListItemComponent} from './course-list-item.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {TEST_COURSES} from '../../course-test.data';
-import {Course} from '../../course';
-import {DurationPipe} from '../duration.pipe';
+import {TEST_COURSES} from '../../services/course-test.data';
+import {Course} from '../../services/course';
 import {MockDirective, MockPipe} from 'ng-mocks';
-import {HighlightByTimelineDirective} from '../highlight-by-timeline.directive';
 import {getByTestId, getNodeText} from '@testing-library/dom';
+import {DurationPipe} from '../../shared/duration.pipe';
+import {HighlightByTimelineDirective} from '../../shared/highlight-by-timeline.directive';
 
 describe('CourseListItemComponent', () => {
   const testModel: Course = TEST_COURSES[0];

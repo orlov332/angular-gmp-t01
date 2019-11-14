@@ -1,52 +1,21 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CourseListComponent} from './course-list/course-list.component';
-import {CourseListItemComponent} from './course-list-item/course-list-item.component';
 import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
-import {SearchPanelComponent} from './search-panel/search-panel.component';
 import {FooterComponent} from './footer/footer.component';
-import {
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatChipsModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatLineModule,
-  MatToolbarModule
-} from '@angular/material';
-import {FormsModule} from '@angular/forms';
-import {CourseDetailsComponent} from './course-details/course-details.component';
-import {HighlightByTimelineDirective} from './highlight-by-timeline.directive';
-import {DurationPipe} from './duration.pipe';
-import {OrderByPipe} from './order-by.pipe';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [CourseListComponent, CourseListItemComponent, HeaderComponent,
-    BreadcrumbsComponent, SearchPanelComponent, FooterComponent, CourseDetailsComponent,
-    HighlightByTimelineDirective, DurationPipe, OrderByPipe],
+  declarations: [HeaderComponent,
+    BreadcrumbsComponent, FooterComponent,
+  ],
   exports: [
-    CourseListComponent,
     HeaderComponent,
     BreadcrumbsComponent,
-    SearchPanelComponent,
     FooterComponent
   ],
   imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatLineModule,
-    MatChipsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonToggleModule,
+    SharedModule,
   ]
 })
 export class CoreModule {

@@ -19,7 +19,7 @@ describe('CourseListComponent', () => {
   let fixture: ComponentFixture<CourseListComponent>;
 
   beforeEach(async(() => {
-    const courseServiceStub = jasmine.createSpyObj('CourseService', ['getList']);
+    const courseServiceStub = jasmine.createSpyObj('CourseService', ['getList', 'remove']);
     courseServiceStub.getList.and.returnValue(TEST_COURSES);
 
     TestBed.configureTestingModule({
@@ -76,8 +76,12 @@ describe('CourseListComponent', () => {
   });
 
   it('should delete course', () => {
-    itemComponents[0].delete.emit(TEST_COURSES[0]);
-    expect(component.deleteCourse).toHaveBeenCalled();
+    spyOn(window, 'confirm').and.returnValue(true);
+    const testCourse = TEST_COURSES[0];
+    itemComponents[0].delete.emit(testCourse);
+    expect(component.deleteCourse).toHaveBeenCalledWith(testCourse);
+    expect(TestBed.get(CourseService).remove).toHaveBeenCalledWith(testCourse);
+
   });
 
   it('should hide courses list if empty course list', () => {

@@ -42,6 +42,7 @@ describe('CourseService', () => {
   it('should remove course', () => {
     const course = courseService.remove(TEST_COURSES[1]);
     expect(course).toBeDefined();
+    expect(courseService.getById(TEST_COURSES[1].id)).toBeFalsy();
   });
 
 });

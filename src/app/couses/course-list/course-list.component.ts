@@ -16,12 +16,19 @@ export class CourseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courses = this.courseService.getList();
+    this.loadCourseList();
+  }
+
+  private loadCourseList() {
+    this.courses = [...this.courseService.getList()];
   }
 
   deleteCourse(course: Course) {
-    window.alert(`Delete course with id: ${course.id}`);
-    console.log(`Delete course with id: ${course.id}`);
+    if (window.confirm(`Do you really want to delete course "${course.title}"`)) {
+      console.log(`Delete course with id: ${course.id}`);
+      this.courseService.remove(course);
+      this.loadCourseList();
+    }
   }
 
   search(searchText: string) {

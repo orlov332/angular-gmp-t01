@@ -6,17 +6,19 @@ import * as _ from 'lodash';
 @Injectable({providedIn: 'root'})
 export class CourseService {
 
+  private courseList: Course[] = [...TEST_COURSES];
+
   getList(): Course[] {
-    return TEST_COURSES;
+    return this.courseList;
   }
 
   create(course: Course): Course {
-    TEST_COURSES.push(course);
+    this.courseList.push(course);
     return course;
   }
 
   getById(id: number): Course {
-    return _.find(TEST_COURSES, {id: id});
+    return _.find(this.courseList, {id});
   }
 
   update(course: Course): Course {
@@ -24,6 +26,7 @@ export class CourseService {
   }
 
   remove(course: Course): Course {
+    _.remove(this.courseList, c => c.id === course.id);
     return course;
   }
 }

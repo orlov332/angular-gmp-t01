@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Course} from '../../course';
-import {CourseService} from '../../course-service';
+import {Course} from '../../services/course';
+import {CourseService} from '../../services/course-service';
 import * as _ from 'lodash';
 
 @Component({
@@ -16,21 +16,28 @@ export class CourseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.loadCourseList();
+  }
+
+  private loadCourseList() {
+    this.courses = [...this.courseService.getList()];
   }
 
   deleteCourse(course: Course) {
-    window.alert(`Delete course with id: ${course.id}`);
-    console.log(`Delete course with id: ${course.id}`);
+    if (window.confirm(`Do you really want to delete course "${course.title}"`)) {
+      console.log(`Delete course with id: ${course.id}`);
+      this.courseService.remove(course);
+      this.loadCourseList();
+    }
   }
 
   search(searchText: string) {
     if (searchText) {
-      this.courses = _.filter(this.courseService.getCourses(), (c: Course) => {
+      this.courses = _.filter(this.courseService.getList(), (c: Course) => {
         return c.title && c.title.toLowerCase().includes(searchText.toLowerCase());
       });
     } else {
-      this.courses = this.courseService.getCourses();
+      this.courses = this.courseService.getList();
     }
   }
 

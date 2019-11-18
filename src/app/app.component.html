@@ -1,9 +1,17 @@
-<app-vc-header></app-vc-header>
+<app-vc-header [isAuth]="isAuth"
+               [authUser]="authUser"
+               (logout)="logout()">
+
+</app-vc-header>
 
 <app-vc-breadcrumbs></app-vc-breadcrumbs>
 
 <div class="site-content">
-  <router-outlet></router-outlet>
+  <!--  <router-outlet></router-outlet>-->
+  <app-vc-login *ngIf="!isAuth" (login)="login($event)"></app-vc-login>
+
+  <app-vc-course-list *ngIf="isAuth"></app-vc-course-list>
 </div>
+
 
 <app-vc-footer></app-vc-footer>

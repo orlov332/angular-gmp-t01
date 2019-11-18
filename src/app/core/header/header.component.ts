@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {User} from '../../services/user';
 
 @Component({
   selector: 'app-vc-header',
@@ -6,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Input()
+  isAuth: boolean;
+
+  @Input()
+  authUser: User;
+
+  @Output()
+  logout = new EventEmitter();
 
   constructor() { }
 

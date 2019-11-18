@@ -1,15 +1,15 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseListComponent} from './course-list.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {CourseService} from '../../course-service';
-import {OrderByPipe} from '../order-by.pipe';
+import {CourseService} from '../../services/course-service';
 import {MockComponent, MockPipe} from 'ng-mocks';
 import {SearchPanelComponent} from '../search-panel/search-panel.component';
 import {CourseListItemComponent} from '../course-list-item/course-list-item.component';
 import {By} from '@angular/platform-browser';
-import {TEST_COURSES} from '../../course-test.data';
+import {TEST_COURSES} from '../../services/course-test.data';
 import {getByTestId, queryByTestId} from '@testing-library/dom';
 import {FormsModule} from '@angular/forms';
+import {OrderByPipe} from '../../shared/order-by.pipe';
 
 
 describe('CourseListComponent', () => {
@@ -19,8 +19,8 @@ describe('CourseListComponent', () => {
   let fixture: ComponentFixture<CourseListComponent>;
 
   beforeEach(async(() => {
-    const courseServiceStub = jasmine.createSpyObj('CourseService', ['getCourses']);
-    courseServiceStub.getCourses.and.returnValue(TEST_COURSES);
+    const courseServiceStub = jasmine.createSpyObj('CourseService', ['getList', 'remove']);
+    courseServiceStub.getList.and.returnValue(TEST_COURSES);
 
     TestBed.configureTestingModule({
       declarations: [
@@ -66,7 +66,7 @@ describe('CourseListComponent', () => {
   });
 
   it('should get courses list from service', () => {
-    expect(TestBed.get(CourseService).getCourses)
+    expect(TestBed.get(CourseService).getList)
       .toHaveBeenCalled();
   });
 
@@ -76,8 +76,12 @@ describe('CourseListComponent', () => {
   });
 
   it('should delete course', () => {
-    itemComponents[0].delete.emit(TEST_COURSES[0]);
-    expect(component.deleteCourse).toHaveBeenCalled();
+    spyOn(window, 'confirm').and.returnValue(true);
+    const testCourse = TEST_COURSES[0];
+    itemComponents[0].delete.emit(testCourse);
+    expect(component.deleteCourse).toHaveBeenCalledWith(testCourse);
+    expect(TestBed.get(CourseService).remove).toHaveBeenCalledWith(testCourse);
+
   });
 
   it('should hide courses list if empty course list', () => {

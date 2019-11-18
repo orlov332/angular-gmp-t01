@@ -3,16 +3,18 @@ import {HeaderComponent} from './header/header.component';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
 import {FooterComponent} from './footer/footer.component';
 import {SharedModule} from '../shared/shared.module';
+import {LoginComponent} from './login/login.component';
 
 
 @NgModule({
   declarations: [HeaderComponent,
-    BreadcrumbsComponent, FooterComponent,
+    BreadcrumbsComponent, FooterComponent, LoginComponent,
   ],
   exports: [
     HeaderComponent,
     BreadcrumbsComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
   ],
   imports: [
     SharedModule,

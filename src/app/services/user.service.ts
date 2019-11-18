@@ -5,20 +5,26 @@ import {User} from './user';
   providedIn: 'root'
 })
 export class UserService {
+  // tslint:disable-next-line:variable-name
+  private _authUser: User;
 
-  isAuth = false;
+  get authUser(): User {
+    return this._authUser;
+  }
+
+  get isAuth(): boolean {
+    return !!this._authUser;
+  }
 
   constructor() {
   }
 
   login(email: string, password: string) {
+    this._authUser = new User(email, 'Some', 'User', 999);
   }
 
   logout() {
-  }
-
-  getUserInfo(): User {
-    return null;
+    this._authUser = null;
   }
 
 }

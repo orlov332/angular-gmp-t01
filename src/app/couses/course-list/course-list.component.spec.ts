@@ -9,7 +9,7 @@ import {By} from '@angular/platform-browser';
 import {TEST_COURSES} from '../../services/course-test.data';
 import {getByTestId, queryByTestId} from '@testing-library/dom';
 import {FormsModule} from '@angular/forms';
-import {OrderByPipe} from '../../shared/order-by.pipe';
+import {OrderByPipe} from '../../widgets/order-by.pipe';
 
 
 describe('CourseListComponent', () => {
@@ -85,7 +85,7 @@ describe('CourseListComponent', () => {
   });
 
   it('should hide courses list if empty course list', () => {
-    component.courses = [];
+    component.courses = null;
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.directive(CourseListItemComponent)))

@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'app-vc-course-list',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss'],
 })

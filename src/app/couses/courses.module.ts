@@ -4,10 +4,11 @@ import {CourseListItemComponent} from './course-list-item/course-list-item.compo
 import {SearchPanelComponent} from './search-panel/search-panel.component';
 import {CourseDetailsComponent} from './course-details/course-details.component';
 import {SharedModule} from '../widgets/shared.module';
+import {CourseInputComponent} from './course-input/course-input.component';
 
 
 @NgModule({
-  declarations: [CourseListComponent, CourseListItemComponent, SearchPanelComponent, CourseDetailsComponent,
+  declarations: [CourseListComponent, CourseListItemComponent, SearchPanelComponent, CourseDetailsComponent, CourseInputComponent,
   ],
   exports: [
     CourseListComponent,

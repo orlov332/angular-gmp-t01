@@ -18,7 +18,7 @@ describe('CourseService', () => {
   it('should return course collection', () => {
     const courses = courseService.getList();
     expect(courses).toBeDefined();
-    expect(courses.length).toBeGreaterThan(0);
+    expect(courses.size).toBeGreaterThan(0);
   });
 
   it('should return course by id', () => {
@@ -28,9 +28,9 @@ describe('CourseService', () => {
   });
 
   it('should create course', () => {
-    const course = courseService.create(TEST_COURSES[1]);
-    expect(course).toBeDefined();
-    expect(course).toEqual(TEST_COURSES[1]);
+    const courseList = courseService.create(TEST_COURSES[1]);
+    expect(courseList).toBeDefined();
+    expect(courseService.getById(TEST_COURSES[1].id)).toBeTruthy();
   });
 
   it('should update course', () => {

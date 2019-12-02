@@ -15,7 +15,7 @@
                            (delete)="deleteCourse($event)">
   </app-vc-course-list-item>
 
-  <button *ngIf="courses?.length"
+  <button *ngIf="courses?.size"
           (click)="loadMore()"
           mat-raised-button
           class="load-more-button"
@@ -23,7 +23,7 @@
     Load more...
   </button>
 
-  <p *ngIf="!courses || courses.length === 0"
+  <p *ngIf="!courses || courses.size === 0"
      class="no-data-container"
      data-testid="no-data-placeholder">
     No Data. Feel free to add new course.

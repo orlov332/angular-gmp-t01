@@ -9,7 +9,8 @@ import {By} from '@angular/platform-browser';
 import {TEST_COURSES} from '../../services/course-test.data';
 import {getByTestId, queryByTestId} from '@testing-library/dom';
 import {FormsModule} from '@angular/forms';
-import {OrderByPipe} from '../../shared/order-by.pipe';
+import {OrderByPipe} from '../../widgets/order-by.pipe';
+import {fromJS} from 'immutable';
 
 
 describe('CourseListComponent', () => {
@@ -20,7 +21,7 @@ describe('CourseListComponent', () => {
 
   beforeEach(async(() => {
     const courseServiceStub = jasmine.createSpyObj('CourseService', ['getList', 'remove']);
-    courseServiceStub.getList.and.returnValue(TEST_COURSES);
+    courseServiceStub.getList.and.returnValue(fromJS(TEST_COURSES));
 
     TestBed.configureTestingModule({
       declarations: [
@@ -85,7 +86,7 @@ describe('CourseListComponent', () => {
   });
 
   it('should hide courses list if empty course list', () => {
-    component.courses = [];
+    component.courses = null;
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.directive(CourseListItemComponent)))

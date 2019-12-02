@@ -5,8 +5,9 @@ import {TEST_COURSES} from '../../services/course-test.data';
 import {Course} from '../../services/course';
 import {MockDirective, MockPipe} from 'ng-mocks';
 import {getByTestId, getNodeText} from '@testing-library/dom';
-import {DurationPipe} from '../../shared/duration.pipe';
-import {HighlightByTimelineDirective} from '../../shared/highlight-by-timeline.directive';
+import {DurationPipe} from '../../widgets/duration.pipe';
+import {HighlightByTimelineDirective} from '../../widgets/highlight-by-timeline.directive';
+import {MatDialog} from '@angular/material';
 
 describe('CourseListItemComponent', () => {
   const testModel: Course = TEST_COURSES[0];
@@ -18,7 +19,9 @@ describe('CourseListItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CourseListItemComponent,
         MockPipe(DurationPipe, e => e.toString()),
-        MockDirective(HighlightByTimelineDirective)],
+        MockDirective(HighlightByTimelineDirective),
+      ],
+      providers: [{provide: MatDialog, useValue: null}],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

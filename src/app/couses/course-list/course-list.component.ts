@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from '../../services/course';
 import {CourseService} from '../../services/course-service';
-import * as _ from 'lodash';
+import {List} from 'immutable';
 
 @Component({
   selector: 'app-vc-course-list',
@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 })
 export class CourseListComponent implements OnInit {
 
-  public courses: Course[];
+  public courses: List<Course>;
 
   constructor(private courseService: CourseService) {
   }
@@ -21,7 +21,7 @@ export class CourseListComponent implements OnInit {
   }
 
   private loadCourseList() {
-    this.courses = [...this.courseService.getList()];
+    this.courses = this.courseService.getList();
   }
 
   deleteCourse(course: Course) {
@@ -34,7 +34,7 @@ export class CourseListComponent implements OnInit {
 
   search(searchText: string) {
     if (searchText) {
-      this.courses = _.filter(this.courseService.getList(), (c: Course) => {
+      this.courses = this.courseService.getList().filter((c: Course) => {
         return c.title && c.title.toLowerCase().includes(searchText.toLowerCase());
       });
     } else {

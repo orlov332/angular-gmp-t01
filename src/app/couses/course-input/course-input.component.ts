@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Course} from '../../services/course';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-vc-course-input',
@@ -8,16 +9,17 @@ import {Course} from '../../services/course';
 })
 export class CourseInputComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    public dialogRef: MatDialogRef<CourseInputComponent>,
+    @Inject(MAT_DIALOG_DATA) public course: Course
+  ) {
   }
 
-  @Input()
-  course: Course;
-
-  @Output()
-  save = new EventEmitter<Course>();
-
   ngOnInit() {
+  }
+
+  cancelClick(): void {
+    this.dialogRef.close();
   }
 
 }

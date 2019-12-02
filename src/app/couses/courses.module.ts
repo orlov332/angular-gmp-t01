@@ -5,6 +5,7 @@ import {SearchPanelComponent} from './search-panel/search-panel.component';
 import {CourseDetailsComponent} from './course-details/course-details.component';
 import {SharedModule} from '../widgets/shared.module';
 import {CourseInputComponent} from './course-input/course-input.component';
+import {MatDatepickerModule, MatDialogModule, MatNativeDateModule} from '@angular/material';
 
 
 @NgModule({
@@ -13,8 +14,12 @@ import {CourseInputComponent} from './course-input/course-input.component';
   exports: [
     CourseListComponent,
   ],
+  entryComponents: [CourseInputComponent],
   imports: [
-    SharedModule
+    SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule
   ]
 })
 export class CoursesModule {

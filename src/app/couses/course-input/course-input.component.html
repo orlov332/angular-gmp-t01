@@ -1,31 +1,66 @@
 <div class="course-input-container">
 
-  <mat-card>
+  <h1 mat-dialog-title>
+    <mat-card-title data-testid="title-text">{{course.title}}</mat-card-title>
+  </h1>
 
-    <mat-card-header>
-      <mat-card-title data-testid="title-text">{{course.title}}</mat-card-title>
-    </mat-card-header>
+  <mat-dialog-content>
 
-    <mat-card-content>
-      <input matInput placeholder="Title" [(ngModel)]="course.title" type="text" name="course-title" required>
+    <p>
+      <mat-form-field>
+        <input matInput
+               placeholder="Title"
+               [(ngModel)]="course.title"
+               type="text"
+               name="course-title"
+               required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <textarea matInput
+                  placeholder="Description"
+                  [(ngModel)]="course.description"
+                  type="text"
+                  name="course-description"></textarea>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput
+               [(ngModel)]="course.creationDate"
+               [matDatepicker]="courseDatePicker"
+               placeholder="Create date"
+               type="datetime">
+        <mat-datepicker-toggle matSuffix [for]="courseDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #courseDatePicker></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput
+               placeholder="Duration"
+               [(ngModel)]="course.duration"
+               type="number"
+               name="course-title"
+               required>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
 
-    </mat-card-content>
-
-    <mat-card-actions>
-      <span class="fill-remaining-space"></span>
-      <button (click)="save.emit(course)"
-              mat-raised-button
-              color="primary"
-              data-testid="save-btn">
-        <mat-icon>save</mat-icon>
-        Save
-      </button>
-      <button mat-raised-button color="primary">
-        <mat-icon>cancel</mat-icon>
-        Cancel
-      </button>
-    </mat-card-actions>
-
-  </mat-card>
+  <mat-dialog-actions>
+    <span class="fill-remaining-space"></span>
+    <button (click)="cancelClick()"
+            mat-raised-button
+            color="primary"
+            data-testid="save-btn">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="cancelClick()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+  </mat-dialog-actions>
 
 </div>

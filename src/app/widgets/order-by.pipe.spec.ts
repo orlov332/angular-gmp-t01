@@ -1,4 +1,5 @@
 import {OrderByPipe} from './order-by.pipe';
+import {fromJS, List} from 'immutable';
 
 describe('OrderByPipe', () => {
   const pipe = new OrderByPipe();
@@ -13,24 +14,24 @@ describe('OrderByPipe', () => {
   });
 
   it('should sort primitives', () => {
-    expect(pipe.transform([2, 5, 8, 1, 0, 1])).toEqual([0, 1, 1, 2, 5, 8]);
+    expect(pipe.transform(List.of(2, 5, 8, 1, 0, 1))).toEqual(List.of(0, 1, 1, 2, 5, 8));
   });
 
   it('should sort objects', () => {
-    expect(pipe.transform([{prop: 2}, {prop: 5}, {prop: 8}, {prop: 1}, {prop: 0}, {prop: 1}], ['prop']))
-      .toEqual([{prop: 0}, {prop: 1}, {prop: 1}, {prop: 2}, {prop: 5}, {prop: 8}]);
+    expect(pipe.transform(List.of({prop: 2}, {prop: 5}, {prop: 8}, {prop: 1}, {prop: 0}, {prop: 1}), ['prop']))
+      .toEqual(fromJS([{prop: 0}, {prop: 1}, {prop: 1}, {prop: 2}, {prop: 5}, {prop: 8}]));
   });
 
   it('should sort objects DESC', () => {
-    expect(pipe.transform([{prop: 2}, {prop: 5}, {prop: 8}, {prop: 1}, {prop: 0}, {prop: 1}], ['prop'], ['desc']))
-      .toEqual([
+    expect(pipe.transform(List.of({prop: 2}, {prop: 5}, {prop: 8}, {prop: 1}, {prop: 0}, {prop: 1}), ['prop'], ['desc']))
+      .toEqual(fromJS([
         {prop: 8},
         {prop: 5},
         {prop: 2},
         {prop: 1},
         {prop: 1},
         {prop: 0},
-      ]);
+      ]));
   });
 
 });

@@ -8,7 +8,11 @@ import {fromJS, List} from 'immutable';
 export class OrderByPipe<T> implements PipeTransform {
 
   transform(value: List<T>, props?, orders?): List<T> {
-    return fromJS(_.orderBy(value.toJS(), props, orders));
+    if (value) {
+      return fromJS(_.orderBy(value.toJS(), props, orders));
+    } else {
+      return List.of();
+    }
   }
 
 }

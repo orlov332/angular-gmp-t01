@@ -4,10 +4,10 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SharedModule} from './widgets/shared.module';
+import {WidgetModule} from './widgets/widget.module';
 import {ServicesModule} from './services/services.module';
-import {CoreModule} from './core/core.module';
 import {CoursesModule} from './couses/courses.module';
+import {ShellModule} from './shell/shell.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +17,12 @@ import {CoursesModule} from './couses/courses.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
-    CoreModule,
+    WidgetModule,
+    ShellModule,
     ServicesModule,
-    CoursesModule // FIXME: Delete when setup routing
+    CoursesModule,
+    ShellModule,
+    // FIXME: Delete when setup routing
   ],
   providers: [],
   bootstrap: [AppComponent]

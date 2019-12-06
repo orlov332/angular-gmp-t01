@@ -3,16 +3,6 @@ import {CommonModule} from '@angular/common';
 import {DurationPipe} from './duration.pipe';
 import {OrderByPipe} from './order-by.pipe';
 import {HighlightByTimelineDirective} from './highlight-by-timeline.directive';
-import {FormsModule} from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatMenuModule,
-  MatToolbarModule
-} from '@angular/material';
 
 
 @NgModule({
@@ -25,15 +15,7 @@ import {
     DurationPipe,
     OrderByPipe,
     CommonModule,
-    FormsModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule
   ]
 })
-export class SharedModule {
+export class WidgetModule {
 }

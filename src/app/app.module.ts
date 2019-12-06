@@ -8,21 +8,21 @@ import {WidgetModule} from './widgets/widget.module';
 import {ServicesModule} from './services/services.module';
 import {CoursesModule} from './couses/courses.module';
 import {ShellModule} from './shell/shell.module';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     WidgetModule,
-    ShellModule,
     ServicesModule,
-    CoursesModule,
     ShellModule,
-    // FIXME: Delete when setup routing
+    CoursesModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

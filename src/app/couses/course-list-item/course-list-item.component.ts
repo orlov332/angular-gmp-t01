@@ -1,7 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Course} from '../../services/course';
-import {MatDialog} from '@angular/material';
-import {CourseInputComponent} from '../course-input/course-input.component';
 
 @Component({
   selector: 'app-vc-course-list-item',
@@ -17,17 +15,11 @@ export class CourseListItemComponent implements OnInit {
   @Output()
   delete = new EventEmitter<Course>();
 
-  constructor(public dialog: MatDialog) {
+  constructor() {
   }
 
   ngOnInit() {
   }
 
-  edit(course: Course) {
-    this.dialog.open(CourseInputComponent, {
-      // width: '250px',
-      data: course
-    });
-  }
 
 }

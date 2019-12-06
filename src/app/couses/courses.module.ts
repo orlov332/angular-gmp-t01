@@ -9,13 +9,14 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
-  MatDialogModule,
+  MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatNativeDateModule,
   MatToolbarModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {CoursesRoutingModule} from './courses-routing.module';
 
 
 @NgModule({
@@ -26,16 +27,17 @@ import {FormsModule} from '@angular/forms';
   ],
   entryComponents: [CourseInputComponent],
   imports: [
+    CoursesRoutingModule,
     WidgetModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule,
     MatCardModule,
-    MatInputModule,
     FormsModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class CoursesModule {

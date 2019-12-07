@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {HeaderComponent} from './header.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {Router} from '@angular/router';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -10,7 +11,8 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{provide: Router, useValue: null}]
     })
       .compileComponents();
   }));

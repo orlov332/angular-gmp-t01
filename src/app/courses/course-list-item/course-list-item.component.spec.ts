@@ -8,6 +8,7 @@ import {getByTestId, getNodeText} from '@testing-library/dom';
 import {DurationPipe} from '../../widgets/duration.pipe';
 import {HighlightByTimelineDirective} from '../../widgets/highlight-by-timeline.directive';
 import {MatDialog} from '@angular/material';
+import {RouterLink} from '@angular/router';
 
 describe('CourseListItemComponent', () => {
   const testModel: Course = TEST_COURSES[0];
@@ -20,6 +21,7 @@ describe('CourseListItemComponent', () => {
       declarations: [CourseListItemComponent,
         MockPipe(DurationPipe, e => e.toString()),
         MockDirective(HighlightByTimelineDirective),
+        MockDirective(RouterLink),
       ],
       providers: [{provide: MatDialog, useValue: null}],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

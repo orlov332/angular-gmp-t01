@@ -14,14 +14,4 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should login user', () => {
-    service.login('asd@some.com', 'qwerty');
-    expect(service.authUser).toBeTruthy();
-  });
-
-  it('should logout user', () => {
-    service.logout();
-    expect(service.isAuth).toBeFalsy();
-  });
-
 });

@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {User} from '../../services/user';
+import {User} from '../../auth/user';
+import {AuthService} from '../../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-vc-header',
@@ -18,9 +20,15 @@ export class HeaderComponent implements OnInit {
   @Output()
   logout = new EventEmitter();
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
+  doLogout() {
+    this.logout.emit();
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
+  }
 }

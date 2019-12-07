@@ -1,12 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseListComponent} from './course-list.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {CourseService} from '../../services/course-service';
+import {CourseService} from '../course-service';
 import {MockComponent, MockPipe} from 'ng-mocks';
 import {SearchPanelComponent} from '../search-panel/search-panel.component';
 import {CourseListItemComponent} from '../course-list-item/course-list-item.component';
 import {By} from '@angular/platform-browser';
-import {TEST_COURSES} from '../../services/course-test.data';
+import {TEST_COURSES} from '../course-test.data';
 import {getByTestId, queryByTestId} from '@testing-library/dom';
 import {FormsModule} from '@angular/forms';
 import {OrderByPipe} from '../../widgets/order-by.pipe';

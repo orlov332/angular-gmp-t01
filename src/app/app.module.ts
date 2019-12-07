@@ -5,8 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WidgetModule} from './widgets/widget.module';
-import {ServicesModule} from './services/services.module';
-import {CoursesModule} from './couses/courses.module';
 import {ShellModule} from './shell/shell.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
@@ -19,9 +17,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
     BrowserModule,
     BrowserAnimationsModule,
     WidgetModule,
-    ServicesModule,
     ShellModule,
-    CoursesModule,
     AppRoutingModule
   ],
   providers: [],

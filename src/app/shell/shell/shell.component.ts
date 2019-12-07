@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../services/user';
-import {UserService} from '../../services/user.service';
+import {User} from '../../auth/user';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-vc-shell',
@@ -10,22 +10,22 @@ import {UserService} from '../../services/user.service';
 export class ShellComponent implements OnInit {
 
   get authUser(): User {
-    return this.userService.authUser;
+    return this.authService.userInfo;
   }
 
   get isAuth(): boolean {
-    return this.userService.isAuth;
+    return this.authService.isLoggedIn;
   }
 
-  constructor(private userService: UserService) {
+  constructor(private authService: AuthService) {
   }
 
   login(cred: { email: string; password: string }) {
-    this.userService.login(cred.email, cred.password);
+    this.authService.login(cred.email, cred.password);
   }
 
   logout() {
-    this.userService.logout();
+    this.authService.logout();
   }
 
   ngOnInit(): void {

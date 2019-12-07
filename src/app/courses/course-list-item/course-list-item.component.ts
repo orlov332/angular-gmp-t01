@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Course} from '../../services/course';
+import {Course} from '../course';
 
 @Component({
   selector: 'app-vc-course-list-item',

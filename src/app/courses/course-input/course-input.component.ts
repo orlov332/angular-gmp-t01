@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Course} from '../../services/course';
+import {Course} from '../course';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CourseService} from '../../services/course-service';
+import {CourseService} from '../course-service';
 
 @Component({
   selector: 'app-vc-course-input',
@@ -31,5 +31,7 @@ export class CourseInputComponent implements OnInit {
 
   saveClick() {
 
+    this.service.save(this.course);
+    this.router.navigate(['..']);
   }
 }

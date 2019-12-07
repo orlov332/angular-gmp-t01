@@ -34,4 +34,8 @@ export class CourseService {
         this.courseList.findIndex(this.byId(course.id))
       );
   }
+
+  save(course: Course) {
+
+  }
 }

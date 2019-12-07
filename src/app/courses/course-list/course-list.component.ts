@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Course} from '../../services/course';
-import {CourseService} from '../../services/course-service';
+import {Course} from '../course';
+import {CourseService} from '../course-service';
 import {List} from 'immutable';
 
 @Component({

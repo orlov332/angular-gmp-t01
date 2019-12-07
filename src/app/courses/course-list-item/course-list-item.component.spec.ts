@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CourseListItemComponent} from './course-list-item.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {TEST_COURSES} from '../../services/course-test.data';
-import {Course} from '../../services/course';
+import {TEST_COURSES} from '../course-test.data';
+import {Course} from '../course';
 import {MockDirective, MockPipe} from 'ng-mocks';
 import {getByTestId, getNodeText} from '@testing-library/dom';
 import {DurationPipe} from '../../widgets/duration.pipe';

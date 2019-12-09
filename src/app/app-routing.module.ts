@@ -8,12 +8,12 @@ import {AuthGuard} from './auth/auth.guard';
 const routes: Routes = [
   {
     path: 'courses',
-    loadChildren: () => import('./courses/courses.module').then(mod => mod.CoursesModule),
     data: {preload: true},
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
+    loadChildren: () => import('./courses/courses.module').then(mod => mod.CoursesModule),
   },
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, data: {breadcrumb: 'Login'}},
   {path: '', redirectTo: '/courses', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];

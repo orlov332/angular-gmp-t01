@@ -10,11 +10,15 @@ const coursesRoutes: Routes = [
     path: '',
     component: CourseComponent,
     canActivate: [AuthGuard],
-    data: {breadcrumb: 'Courses'},
     children: [
       {path: 'new', component: CourseInputComponent, canActivateChild: [AuthGuard], data: {breadcrumb: 'New Course'}},
-      {path: ':id', component: CourseInputComponent, canActivateChild: [AuthGuard], data: {breadcrumb: 'Edit Course'}},
-      {path: '', component: CourseListComponent, canActivateChild: [AuthGuard]},
+      {
+        path: ':id',
+        component: CourseInputComponent,
+        canActivateChild: [AuthGuard],
+        data: {breadcrumb: (config) => config.component.getBreadCrumb()}
+      },
+      {path: '', component: CourseListComponent, canActivateChild: [AuthGuard], data: {breadcrumb: 'Courses List'}},
     ]
   },
 ];

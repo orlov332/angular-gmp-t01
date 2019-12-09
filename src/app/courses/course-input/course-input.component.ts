@@ -34,4 +34,8 @@ export class CourseInputComponent implements OnInit {
     this.service.save(this.course);
     this.router.navigate(['..']);
   }
+
+  getBreadCrumb() {
+    return this.course.title;
+  }
 }

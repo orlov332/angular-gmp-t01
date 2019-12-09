@@ -14,6 +14,7 @@ import {
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {ShellComponent} from './shell/shell.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {ShellComponent} from './shell/shell.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    RouterModule,
   ]
 })
 export class ShellModule {

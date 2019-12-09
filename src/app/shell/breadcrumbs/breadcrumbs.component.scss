@@ -1,4 +1,21 @@
 :host {
   padding-left: 10px;
   background-color: aliceblue;
+
+  .breadcrumb li {
+    display: inline;
+  }
+
+  .breadcrumb li + li:before {
+    content: " > ";
+    //color: white;
+  }
+
+  .breadcrumb {
+    //background-color: #8d0000;
+    //padding: 20px;
+    //a{
+    //  color: white;
+    //}
+  }
 }

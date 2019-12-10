@@ -1,0 +1,14 @@
+<app-vc-header [isAuth]="isAuth"
+               [authUser]="authUser"
+               (logout)="logout()">
+
+</app-vc-header>
+
+<app-vc-breadcrumbs></app-vc-breadcrumbs>
+
+<div class="site-content">
+  <ng-content></ng-content>
+</div>
+
+
+<app-vc-footer></app-vc-footer>

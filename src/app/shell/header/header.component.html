@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+
+  <mat-icon>play_circle_outline</mat-icon>
+  <span>Video Course</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+
+  <a *ngIf="isAuth"
+     mat-button>
+    <mat-icon>person</mat-icon>
+    {{authUser.firstName}} {{authUser.lastName}}
+  </a>
+
+  <a *ngIf="isAuth"
+     mat-button
+     (click)="doLogout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </a>
+
+</mat-toolbar>

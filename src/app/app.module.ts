@@ -4,23 +4,21 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SharedModule} from './widgets/shared.module';
-import {ServicesModule} from './services/services.module';
-import {CoreModule} from './core/core.module';
-import {CoursesModule} from './couses/courses.module';
+import {WidgetModule} from './widgets/widget.module';
+import {ShellModule} from './shell/shell.module';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
-    CoreModule,
-    ServicesModule,
-    CoursesModule // FIXME: Delete when setup routing
+    WidgetModule,
+    ShellModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

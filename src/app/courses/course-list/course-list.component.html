@@ -1,0 +1,32 @@
+<div class="mat-app-background app-course-list-container">
+
+  <app-vc-search-panel (search)="search($event)"></app-vc-search-panel>
+
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button color="primary" routerLink="./new">
+      <mat-icon>add</mat-icon>
+      Add course
+    </button>
+  </mat-toolbar>
+
+  <app-vc-course-list-item *ngFor="let course of courses | orderBy: ['creationDate']: ['desc']"
+                           [course]="course"
+                           (delete)="deleteCourse($event)">
+  </app-vc-course-list-item>
+
+  <button *ngIf="courses?.size"
+          (click)="loadMore()"
+          mat-raised-button
+          class="load-more-button"
+          data-testid="load-more-btn">
+    Load more...
+  </button>
+
+  <p *ngIf="!courses || courses.size === 0"
+     class="no-data-container"
+     data-testid="no-data-placeholder">
+    No Data. Feel free to add new course.
+  </p>
+
+</div>

@@ -1,0 +1,47 @@
+<div class="app-vc-course-list-item-container">
+
+  <mat-card [appVcHighlightByTimeline]="course.creationDate"
+            [ngClass]="{'starred': course.topRated}">
+
+    <mat-card-header>
+      <mat-card-title data-testid="title-text">{{course.title | uppercase}}</mat-card-title>
+
+      <mat-icon *ngIf="course.topRated">star</mat-icon>
+
+      <mat-card-subtitle>
+
+        <span class="with-icon">
+          <mat-icon>history</mat-icon>
+          <span>{{course.duration | duration}}</span>
+        </span>
+
+        <span class="with-icon">
+          <mat-icon>event</mat-icon>
+          <span>{{course.creationDate | date : 'mediumDate'}}</span>
+        </span>
+
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p data-testid="description-text">{{course.description}}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <span class="fill-remaining-space"></span>
+      <button mat-raised-button color="primary" [routerLink]="['./', course.id]">
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+      <button (click)="delete.emit(course)"
+              mat-raised-button
+              color="primary"
+              data-testid="delete-btn">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>

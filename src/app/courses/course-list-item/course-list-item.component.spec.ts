@@ -7,7 +7,6 @@ import {MockDirective, MockPipe} from 'ng-mocks';
 import {getByTestId, getNodeText} from '@testing-library/dom';
 import {DurationPipe} from '../../widgets/duration.pipe';
 import {HighlightByTimelineDirective} from '../../widgets/highlight-by-timeline.directive';
-import {MatDialog} from '@angular/material';
 import {RouterLink} from '@angular/router';
 
 describe('CourseListItemComponent', () => {
@@ -23,7 +22,7 @@ describe('CourseListItemComponent', () => {
         MockDirective(HighlightByTimelineDirective),
         MockDirective(RouterLink),
       ],
-      providers: [{provide: MatDialog, useValue: null}],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

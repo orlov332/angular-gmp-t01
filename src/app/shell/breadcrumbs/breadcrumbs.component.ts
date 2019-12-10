@@ -30,7 +30,7 @@ export class BreadcrumbsComponent implements OnInit {
     let nextUrl = url;
     const config = route.routeConfig;
     if (config && config.data && config.data.breadcrumb) {
-      const label = config.data.breadcrumb instanceof Function ? config.data.breadcrumb(config) : config.data.breadcrumb;
+      const label = config.data.breadcrumb instanceof Function ? config.data.breadcrumb(route) : config.data.breadcrumb;
       const path = config.path;
       // In the routeConfig the complete path is not available,
       // so we rebuild it each time

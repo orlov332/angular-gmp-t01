@@ -24,6 +24,7 @@ export class CourseInputComponent implements OnInit {
     const id: number = +this.route.snapshot.paramMap.get('id');
     if (id) {
       this.course = {...this.service.getById(id)};
+      this.route.snapshot.data.breadcrumb = this.course.title;
     } else {
       this.course = new Course();
     }
@@ -35,7 +36,7 @@ export class CourseInputComponent implements OnInit {
     this.router.navigate(['..']);
   }
 
-  getBreadCrumb() {
+  getBreadCrumb(): string {
     return this.course.title;
   }
 }

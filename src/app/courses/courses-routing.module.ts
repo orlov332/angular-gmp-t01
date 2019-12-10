@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
 import {CourseListComponent} from './course-list/course-list.component';
 import {CourseInputComponent} from './course-input/course-input.component';
 import {CourseComponent} from './course/course.component';
@@ -10,15 +10,21 @@ const coursesRoutes: Routes = [
     path: '',
     component: CourseComponent,
     canActivate: [AuthGuard],
+    data: {breadcrumb: 'Courses'},
     children: [
       {path: 'new', component: CourseInputComponent, canActivateChild: [AuthGuard], data: {breadcrumb: 'New Course'}},
       {
         path: ':id',
         component: CourseInputComponent,
         canActivateChild: [AuthGuard],
-        data: {breadcrumb: (config) => config.component.getBreadCrumb()}
+        data: {
+          breadcrumb(route: ActivatedRoute): string {
+            const id = route.snapshot.paramMap.get('id');
+            return id;
+          }
+        }
       },
-      {path: '', component: CourseListComponent, canActivateChild: [AuthGuard], data: {breadcrumb: 'Courses List'}},
+      {path: '', component: CourseListComponent, canActivateChild: [AuthGuard]},
     ]
   },
 ];

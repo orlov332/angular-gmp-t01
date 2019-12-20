@@ -1,15 +1,21 @@
 import {Injectable} from '@angular/core';
 import {UserService} from './user.service';
 import {User} from './user';
+import {HttpClient} from '@angular/common/http';
+import {environment as env} from '../../environments/environment';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private readonly loginUrl = `${env.apiBase}/auth/login`;
+  private readonly userinfoUrl = `${env.apiBase}/auth/userinfo`;
+
   userInfo: User;
 
-  constructor(private userService: UserService) {
+  constructor(private http: HttpClient, private userService: UserService) {
   }
 
   isLoggedIn = false;
@@ -17,9 +23,9 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  login(userEmail: string, password: string): boolean {
-    this.userInfo = this.userService.findByLogin(userEmail, password);
-    return this.isLoggedIn = true;
+  login(userEmail: string, password: string): Observable<any> {
+
+    return this.http.put(this.loginUrl, {login: userEmail, password});
   }
 
   logout(): void {

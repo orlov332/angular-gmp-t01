@@ -9,7 +9,7 @@
   <a *ngIf="isAuth"
      mat-button>
     <mat-icon>person</mat-icon>
-    {{authUser.firstName}} {{authUser.lastName}}
+    {{authUser.name.first}} {{authUser.name.last}}
   </a>
 
   <a *ngIf="isAuth"

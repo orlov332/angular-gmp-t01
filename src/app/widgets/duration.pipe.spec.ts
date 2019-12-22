@@ -11,11 +11,11 @@ describe('DurationPipe', () => {
     expect(durationPipe).toBeTruthy();
   });
 
-  it('should full format duration', () => {
+  it('should full format length', () => {
     expect(durationPipe.transform(95)).toBe('1h 35min');
   });
 
-  it('should format only minutes duration', () => {
+  it('should format only minutes length', () => {
     expect(durationPipe.transform(55)).toBe('55min');
   });
 

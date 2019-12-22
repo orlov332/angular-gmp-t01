@@ -9,6 +9,9 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class ShellComponent implements OnInit {
 
+  constructor(private authService: AuthService) {
+  }
+
   get authUser(): User {
     return this.authService.userInfo;
   }
@@ -17,11 +20,9 @@ export class ShellComponent implements OnInit {
     return this.authService.isLoggedIn;
   }
 
-  constructor(private authService: AuthService) {
-  }
-
   login(cred: { email: string; password: string }) {
-    this.authService.login(cred.email, cred.password);
+    this.authService.login(cred.email, cred.password)
+      .subscribe();
   }
 
   logout() {

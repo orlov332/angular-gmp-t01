@@ -40,9 +40,9 @@ describe('CourseListItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should draw course title', () => {
-    expect(getNodeText(getByTestId(element, 'title-text')))
-      .toEqual(testModel.title.toUpperCase());
+  it('should draw course name', () => {
+    expect(getNodeText(getByTestId(element, 'name-text')))
+      .toEqual(testModel.name.toUpperCase());
   });
 
   it('should draw course description', () => {

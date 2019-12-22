@@ -15,9 +15,9 @@ describe('Course', () => {
   it('should create an instance', () => {
     expect(course).toBeTruthy();
     expect(course.id).toBe(id);
-    expect(course.title).toBe(title);
-    expect(course.creationDate).toBe(date);
-    expect(course.duration).toBe(duration);
+    expect(course.name).toBe(title);
+    expect(course.date).toBe(date);
+    expect(course.length).toBe(duration);
     expect(course.description).toBe(description);
   });
 });

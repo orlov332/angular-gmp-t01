@@ -54,7 +54,7 @@ describe('CourseListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should search courses by title', () => {
+  it('should search courses by name', () => {
     searchComponent.search.emit('eng');
     // ensure event listener called
     expect(component.search).toHaveBeenCalledWith('eng');

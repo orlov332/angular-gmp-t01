@@ -1,11 +1,15 @@
-export class User {
+import {UserToken} from './user-token';
 
-  constructor(
-    public email: string,
-    public firstName?: string,
-    public lastName?: string,
-    public id?: number,
-  ) {
-  }
+interface Name {
+  first: string;
+  last: string;
+}
+
+export interface User extends UserToken {
+
+  id: number;
+  name: Name;
+  login: string;
+  password: string;
 
 }

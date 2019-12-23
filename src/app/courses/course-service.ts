@@ -1,41 +1,51 @@
 import {Course} from './course';
 import {Injectable} from '@angular/core';
-import {TEST_COURSES} from './course-test.data';
-import {List} from 'immutable';
+import {environment as env} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class CourseService {
 
-  private courseList: List<Course> = List.of(...TEST_COURSES);
+  private readonly coursesUrl = `${env.apiBase}/courses`;
 
-  getList(): List<Course> {
-    return this.courseList;
+  constructor(private http: HttpClient) {
   }
 
-  create(course: Course): List<Course> {
-    return this.courseList = this.courseList.push(course);
+  getList(textFragment: string, start: number, count: number): Observable<Course[]> {
+
+    const options = {
+      params:
+        {
+          textFragment,
+          count: count.toString(),
+          start: start.toString()
+        }
+    };
+    return this.http.get<Course[]>(this.coursesUrl, options);
   }
 
-  getById(id: number): Course {
-    return this.courseList.find(this.byId(id));
+  create(course: Course): Observable<Course> {
+    return this.http.post<Course>(this.coursesUrl, course);
   }
 
-  private byId(id: number) {
-    return (value) => value.id === id;
+  getById(id: number): Observable<Course> {
+    return this.http.get<Course>(`${this.coursesUrl}/${id}`);
   }
 
-  update(course: Course): Course {
-    return course;
+  update(course: Course): Observable<Course> {
+    return this.http.patch<Course>(this.coursesUrl, course);
   }
 
-  remove(course: Course): List<Course> {
-    return this.courseList =
-      this.courseList.remove(
-        this.courseList.findIndex(this.byId(course.id))
-      );
+  remove(course: Course): Observable<Course> {
+    return this.http.delete<Course>(`${this.coursesUrl}/${course.id}`);
   }
 
-  save(course: Course) {
-
+  save(course: Course): Observable<Course> {
+    if (course.id) {
+      return this.update(course);
+    } else {
+      return this.create(course);
+    }
   }
 }

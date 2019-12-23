@@ -23,8 +23,10 @@ export class CourseInputComponent implements OnInit {
   ngOnInit() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.course = {...this.service.getById(id)};
-      this.route.snapshot.data.breadcrumb = this.course.title;
+      this.service.getById(id).subscribe(c => {
+        this.course = c;
+        this.route.snapshot.data.breadcrumb = this.course.name;
+      });
     } else {
       this.course = new Course();
     }
@@ -37,6 +39,6 @@ export class CourseInputComponent implements OnInit {
   }
 
   getBreadCrumb(): string {
-    return this.course.title;
+    return this.course.name;
   }
 }

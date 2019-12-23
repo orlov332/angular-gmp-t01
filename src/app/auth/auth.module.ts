@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {MatButtonModule, MatCardModule, MatInputModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {AuthInterceptor} from './auth.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
 @NgModule({
@@ -14,7 +16,10 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     MatButtonModule
   ],
-  exports: [LoginComponent]
+  exports: [LoginComponent],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ]
 })
 export class AuthModule {
 }

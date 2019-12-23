@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from '../course';
 import {CourseService} from '../course-service';
-import {List} from 'immutable';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-vc-course-list',
@@ -11,34 +11,34 @@ import {List} from 'immutable';
 })
 export class CourseListComponent implements OnInit {
 
-  public courses: List<Course>;
+  private readonly pageSize = 5;
+  private start = 0;
+  private count = this.pageSize;
+
+  public courses$: Observable<Course[]>;
 
   constructor(private courseService: CourseService) {
   }
 
   ngOnInit() {
-    this.courses = this.courseService.getList();
+    this.courses$ = this.courseService.getList(null, this.start, this.count);
   }
 
   deleteCourse(course: Course) {
-    if (window.confirm(`Do you really want to delete course "${course.title}"`)) {
+    if (window.confirm(`Do you really want to delete course "${course.name}"`)) {
       console.log(`Delete course with id: ${course.id}`);
-      this.courses = this.courseService.remove(course);
+      this.courseService.remove(course)
+        .subscribe(_ => this.courses$ = this.courseService.getList(null, this.start, this.count));
     }
   }
 
   search(searchText: string) {
-    if (searchText) {
-      this.courses = this.courseService.getList().filter((c: Course) => {
-        return c.title && c.title.toLowerCase().includes(searchText.toLowerCase());
-      });
-    } else {
-      this.courses = this.courseService.getList();
-    }
+    this.courses$ = this.courseService.getList(searchText, this.start, this.count);
   }
 
   loadMore() {
-    window.alert('Load next page of courses...');
+    this.count += this.pageSize;
+    this.courses$ = this.courseService.getList(null, this.start, this.count);
     console.log('Load next page of courses...');
   }
 

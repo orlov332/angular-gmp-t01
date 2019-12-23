@@ -2,11 +2,11 @@ export class Course {
 
   constructor(
     public id?: number,
-    public title?: string,
-    public creationDate: Date = new Date(),
-    public duration?: number,
+    public name?: string,
+    public date: Date = new Date(),
+    public length?: number,
     public description?: string,
-    public topRated = false,
+    public isTopRated = false,
   ) {
   }
 

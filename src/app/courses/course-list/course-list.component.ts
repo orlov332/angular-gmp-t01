@@ -33,6 +33,7 @@ export class CourseListComponent implements OnInit {
   }
 
   search(searchText: string) {
+    console.log(`Search courses by text: ${searchText}`);
     this.courses$ = this.courseService.getList(searchText, this.start, this.count);
   }
 

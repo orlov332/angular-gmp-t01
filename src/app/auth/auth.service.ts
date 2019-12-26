@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {User} from './user';
 import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {UserToken} from './user-token';
 import {catchError, concatMap, map, tap} from 'rxjs/operators';
 
@@ -10,18 +10,26 @@ import {catchError, concatMap, map, tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-
   private readonly loginUrl = `${env.apiBase}/auth/login`;
   private readonly userinfoUrl = `${env.apiBase}/auth/userinfo`;
 
-  userInfo: User;
+  private userInfoSubject = new BehaviorSubject<User>(null);
+  private isLoggedInSubject = new BehaviorSubject(false);
+
   token: UserToken;
-  isLoggedIn = false;
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
   constructor(private http: HttpClient) {
+  }
+
+  get userInfo$(): Observable<User> {
+    return this.userInfoSubject.asObservable();
+  }
+
+  get isLoggedIn$(): Observable<boolean> {
+    return this.isLoggedInSubject.asObservable();
   }
 
   login(userEmail: string, password: string): Observable<boolean> {
@@ -35,8 +43,8 @@ export class AuthService {
         concatMap(token => this.getUserInfo(token)),
         tap(user => {
           console.log(`User info loaded: ${user}`);
-          this.userInfo = user;
-          this.isLoggedIn = true;
+          this.userInfoSubject.next(user);
+          this.isLoggedInSubject.next(true);
         }),
         map(_ => true),
         catchError(err => {
@@ -51,8 +59,8 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isLoggedIn = false;
-    this.userInfo = undefined;
+    this.isLoggedInSubject.next(false);
+    this.userInfoSubject.next(null);
     this.token = undefined;
   }
 }

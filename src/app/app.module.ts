@@ -7,22 +7,29 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WidgetModule} from './widgets/widget.module';
 import {ShellModule} from './shell/shell.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {LoaderComponent} from './loader/loader.component';
+import {MatProgressSpinnerModule} from '@angular/material';
+import {LoaderInterceptor} from './loader/loader.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     WidgetModule,
     ShellModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

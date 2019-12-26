@@ -6,13 +6,13 @@
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <a *ngIf="isAuth"
+  <a *ngIf="authUser$ | async as authUser"
      mat-button>
     <mat-icon>person</mat-icon>
     {{authUser.name.first}} {{authUser.name.last}}
   </a>
 
-  <a *ngIf="isAuth"
+  <a *ngIf="isAuth$ | async"
      mat-button
      (click)="doLogout()">
     <mat-icon>exit_to_app</mat-icon>

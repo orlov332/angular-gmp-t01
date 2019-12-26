@@ -25,16 +25,17 @@ export class LoginComponent implements OnInit {
   doLogin() {
     const cred = {email: this.userEmail, password: this.password};
     this.login.emit(cred);
-    this.authService.login(this.userEmail, this.password).subscribe(_ => {
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
+    this.authService.login(this.userEmail, this.password)
+      .subscribe(isLoggedIn => {
+        if (isLoggedIn) {
+          // Get the redirect URL from our auth service
+          // If no redirect has been set, use the default
+          const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
 
-        console.log('Redirect the user to' + redirect);
-        this.router.navigateByUrl(redirect);
-      }
-    });
+          console.log('Redirect the user to' + redirect);
+          this.router.navigateByUrl(redirect);
+        }
+      });
   }
 
 }

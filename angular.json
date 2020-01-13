@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "angular-gmp-t01"
+  "defaultProject": "angular-gmp-t01",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

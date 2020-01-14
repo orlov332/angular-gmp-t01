@@ -11,6 +11,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoaderComponent} from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material';
 import {LoaderInterceptor} from './loader/loader.interceptor';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import {LoaderInterceptor} from './loader/loader.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     WidgetModule,
     ShellModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}

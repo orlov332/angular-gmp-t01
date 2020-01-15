@@ -3,7 +3,8 @@ import {UserToken} from '../user-token';
 import {User} from '../user';
 
 export const authLogin = createAction(
-  '[Auth] Login'
+  '[Auth] Login',
+  props<{ login: string, password: string }>()
 );
 
 export const authLogout = createAction(

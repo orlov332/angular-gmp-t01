@@ -17,5 +17,5 @@ export const selectAuthUser = createSelector(
 
 export const selectAuthIsLoggedIn = createSelector(
   selectAuthState,
-  (state) => state.isLoggedIn
+  (state) => !!state.token
 );

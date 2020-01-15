@@ -8,11 +8,9 @@ export const authFeatureKey = 'auth';
 export interface AuthState {
   token: UserToken;
   user: User;
-  isLoggedIn: boolean;
 }
 
 export const initialState: AuthState = {
-  isLoggedIn: false,
   token: null,
   user: null
 };
@@ -28,7 +26,10 @@ const authReducer = createReducer(
     user: action.user,
     isLoggedIn: true
   })),
-  on(AuthActions.authLoginFailure, (state, action) => initialState),
+  on(AuthActions.authLoginFailure, (state, action) => {
+    console.error(action.error);
+    return initialState;
+  }),
 );
 
 export function reducer(state: AuthState | undefined, action: Action) {

@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.post<UserToken>(this.loginUrl, {login, password});
   }
 
-  private getUserInfo(token: UserToken): Observable<User> {
+  getUserInfo(token: UserToken): Observable<User> {
     return this.http.post<User>(this.userinfoUrl, token, {headers: {Authorization: token.token}});
   }
 

@@ -13,6 +13,9 @@ import {MatProgressSpinnerModule} from '@angular/material';
 import {LoaderInterceptor} from './loader/loader.interceptor';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,12 @@ import {EffectsModule} from '@ngrx/effects';
     MatProgressSpinnerModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    AuthModule,
     WidgetModule,
     ShellModule,
     AppRoutingModule,

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, map, mergeMap, tap} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {EMPTY, of} from 'rxjs';
 
 import * as AuthActions from './auth.actions';
 import {AuthService} from '../auth.service';
@@ -14,6 +14,9 @@ export class AuthEffects {
   authLogin$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.authLogin),
+      tap(action => {
+        console.log(action);
+      }),
       mergeMap((action) =>
         this.authService.login(action.login, action.password)
           .pipe(
@@ -23,7 +26,7 @@ export class AuthEffects {
                   map(user =>
                     AuthActions.authLoginSuccess({token, user}))),
             ),
-          ),
+          )
       ),
       catchError(error => of(AuthActions.authLoginFailure({error})))
     );
@@ -34,7 +37,10 @@ export class AuthEffects {
 
     return this.actions$.pipe(
       ofType(AuthActions.authLogout),
-      tap(() => this.router.navigateByUrl('/login'))
+      mergeMap(() => {
+        this.router.navigateByUrl('/login');
+        return EMPTY;
+      })
     );
 
   });
@@ -43,7 +49,10 @@ export class AuthEffects {
 
     return this.actions$.pipe(
       ofType(AuthActions.authLoginSuccess),
-      tap(() => this.router.navigateByUrl('/'))
+      mergeMap(() => {
+        this.router.navigateByUrl('/');
+        return EMPTY;
+      })
     );
 
   });

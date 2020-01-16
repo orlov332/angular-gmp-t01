@@ -7,15 +7,15 @@ export const selectAuthState = createFeatureSelector<any, fromAuth.AuthState>(
 
 export const selectAuthToken = createSelector(
   selectAuthState,
-  (state) => state.token
+  (state) => state ? state.token : null
 );
 
 export const selectAuthUser = createSelector(
   selectAuthState,
-  (state) => state.user
+  (state) => state ? state.user : null
 );
 
 export const selectAuthIsLoggedIn = createSelector(
   selectAuthState,
-  (state) => !!state.token
+  (state) => state && !!state.token
 );

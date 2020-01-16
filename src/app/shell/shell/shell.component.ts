@@ -23,7 +23,7 @@ export class ShellComponent implements OnInit {
   }
 
   logout() {
-    this.store$.dispatch(AuthActions.authLogout);
+    this.store$.dispatch(AuthActions.authLogout());
   }
 
   ngOnInit(): void {

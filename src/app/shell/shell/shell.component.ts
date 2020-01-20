@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../auth/user';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {selectAuthIsLoggedIn, selectAuthUser} from '../../auth/state/auth.selectors';
-import * as AuthActions from '../../auth/state/auth.actions';
+import {selectAuthIsLoggedIn, selectAuthUser} from '../../auth/store/auth.selectors';
+import * as AuthActions from '../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-vc-shell',

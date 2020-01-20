@@ -2,7 +2,7 @@ import {initialState, reducer} from './auth.reducer';
 
 describe('Auth Reducer', () => {
   describe('an unknown action', () => {
-    it('should return the previous state', () => {
+    it('should return the previous store', () => {
       const action = {} as any;
 
       const result = reducer(initialState, action);

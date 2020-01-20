@@ -3,7 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 
 import {Observable, of} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {selectAuthToken} from './state/auth.selectors';
+import {selectAuthToken} from './store/auth.selectors';
 import {first, mergeMap} from 'rxjs/operators';
 
 /** Pass untouched request through to the next request handler. */

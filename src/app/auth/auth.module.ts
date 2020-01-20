@@ -6,9 +6,9 @@ import {FormsModule} from '@angular/forms';
 import {AuthInterceptor} from './auth.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
-import * as fromAuth from './state/auth.reducer';
+import * as fromAuth from './store/auth.reducer';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './state/auth.effects';
+import {AuthEffects} from './store/auth.effects';
 
 
 @NgModule({

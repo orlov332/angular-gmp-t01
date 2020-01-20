@@ -14,8 +14,15 @@ import {LoaderInterceptor} from './loader/loader.interceptor';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {environment} from '../environments/environment';
+import {environment as env, environment} from '../environments/environment';
 import {AuthModule} from './auth/auth.module';
+import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
+
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: env.apiBase,
+  timeout: 3000, // request timeout
+};
+
 
 @NgModule({
   declarations: [
@@ -30,6 +37,7 @@ import {AuthModule} from './auth/auth.module';
     MatProgressSpinnerModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    EntityDataModule.forRoot({}),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -41,6 +49,7 @@ import {AuthModule} from './auth/auth.module';
     AppRoutingModule,
   ],
   providers: [
+    {provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig},
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

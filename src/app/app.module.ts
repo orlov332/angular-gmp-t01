@@ -21,6 +21,12 @@ import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: env.apiBase,
   timeout: 3000, // request timeout
+  entityHttpResourceUrls: {
+    Course: {
+      entityResourceUrl: `${env.apiBase}/courses/`,
+      collectionResourceUrl: `${env.apiBase}/courses/`,
+    }
+  }
 };
 
 

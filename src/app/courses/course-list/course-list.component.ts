@@ -19,7 +19,10 @@ export class CourseListComponent implements OnInit {
   private loading$: Observable<boolean>;
 
   constructor(private courseService: CourseDataService) {
-    this.courses$ = courseService.getAll(/*{this.start, this.count}*/);
+    this.courses$ = courseService.getWithQuery({
+      start: this.start.toString(),
+      count: this.count.toString()
+    });
     this.loading$ = courseService.loading$;
   }
 
@@ -35,12 +38,19 @@ export class CourseListComponent implements OnInit {
 
   search(searchText: string) {
     console.log(`Search courses by text: ${searchText}`);
-    // this.courses$ = this.courseService.getList(searchText, this.start, this.count);
+    this.courses$ = this.courseService.getWithQuery({
+      textFragment: searchText,
+      start: this.start.toString(),
+      count: this.count.toString()
+    });
   }
 
   loadMore() {
     this.count += this.pageSize;
-    // this.courses$ = this.courseService.getList(null, this.start, this.count);
+    this.courses$ = this.courseService.getWithQuery({
+      start: this.start.toString(),
+      count: this.count.toString()
+    });
     console.log('Load next page of courses...');
   }
 

@@ -17,8 +17,8 @@ import {
 import {FormsModule} from '@angular/forms';
 import {CoursesRoutingModule} from './courses-routing.module';
 import {CourseComponent} from './course/course.component';
-import {EntityDefinitionService, PLURAL_NAMES_TOKEN} from '@ngrx/data';
-import {coursesEntityMetadata, coursesPluralNames} from './store/entity-metadata';
+import {EntityDefinitionService} from '@ngrx/data';
+import {coursesEntityMetadata} from './store/entity-metadata';
 
 
 @NgModule({
@@ -39,7 +39,8 @@ import {coursesEntityMetadata, coursesPluralNames} from './store/entity-metadata
     CoursesRoutingModule,
   ],
   providers: [
-    {provide: PLURAL_NAMES_TOKEN, multi: true, useValue: coursesPluralNames}
+    // {provide: PLURAL_NAMES_TOKEN, multi: true, useValue: coursesPluralNames}
+    // {provide: Pluralizer, useClass: CoursesPluralizer}
   ]
 })
 

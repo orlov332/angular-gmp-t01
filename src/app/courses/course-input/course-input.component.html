@@ -1,4 +1,4 @@
-<mat-card class="course-input-container">
+<mat-card class="course-input-container" *ngIf="course$ | async as course">
 
   <mat-card-header>
     <mat-card-title data-testid="name-text">{{course.name}}</mat-card-title>
@@ -50,7 +50,7 @@
 
   <mat-card-actions>
     <span class="fill-remaining-space"></span>
-    <button (click)="saveClick()"
+    <button (click)="saveClick(course)"
             mat-raised-button
             color="primary"
             data-testid="save-btn">

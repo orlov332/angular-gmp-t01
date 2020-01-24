@@ -14,7 +14,7 @@ import {
   MatNativeDateModule,
   MatToolbarModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {CoursesRoutingModule} from './courses-routing.module';
 import {CourseComponent} from './course/course.component';
 import {EntityDefinitionService} from '@ngrx/data';
@@ -26,11 +26,11 @@ import {coursesEntityMetadata} from './store/entity-metadata';
   ],
   entryComponents: [CourseInputComponent],
   imports: [
+    ReactiveFormsModule,
     WidgetModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
-    FormsModule,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
@@ -39,8 +39,6 @@ import {coursesEntityMetadata} from './store/entity-metadata';
     CoursesRoutingModule,
   ],
   providers: [
-    // {provide: PLURAL_NAMES_TOKEN, multi: true, useValue: coursesPluralNames}
-    // {provide: Pluralizer, useClass: CoursesPluralizer}
   ]
 })
 

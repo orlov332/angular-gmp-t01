@@ -1,21 +1,21 @@
-<mat-card class="example-card">
+<form class="example-form" [formGroup]="form" (ngSubmit)="doLogin()">
 
-  <mat-card-header>
+  <mat-card class="example-card">
 
-    <mat-card-title>Login</mat-card-title>
+    <mat-card-header>
 
-  </mat-card-header>
+      <mat-card-title>Login</mat-card-title>
 
-  <mat-card-content>
+    </mat-card-header>
 
-    <form class="example-form">
+    <mat-card-content>
 
       <table class="example-full-width">
 
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="User E-Mail" [(ngModel)]="userEmail" type="email" name="user-email" required>
+              <input matInput placeholder="User E-Mail" formControlName="login" type="email" name="user-email" required>
             </mat-form-field>
           </td>
         </tr>
@@ -23,7 +23,7 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="user-password"
+              <input matInput placeholder="Password" formControlName="password" type="password" name="user-password"
                      required>
             </mat-form-field>
           </td>
@@ -31,12 +31,12 @@
 
       </table>
 
-    </form>
+    </mat-card-content>
 
-  </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" [disabled]="!form.valid" color="primary">Login</button>
+    </mat-card-actions>
 
-  <mat-card-actions>
-    <button mat-raised-button (click)="doLogin()" color="primary">Login</button>
-  </mat-card-actions>
+  </mat-card>
 
-</mat-card>
+</form>

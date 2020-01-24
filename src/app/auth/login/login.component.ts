@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as AuthActions from '../store/auth.actions';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-vc-login',
@@ -16,16 +17,28 @@ export class LoginComponent implements OnInit {
   @Output()
   login = new EventEmitter<{ login: string, password: string }>();
 
-  constructor(private store$: Store<any>) {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder,
+              private store$: Store<any>) {
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      login: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   doLogin() {
-    const cred = {login: this.userEmail, password: this.password};
-    this.login.emit(cred);
-    this.store$.dispatch(AuthActions.authLogin(cred));
+    if (this.form.valid) {
+      const cred = this.form.value;
+
+      console.log(cred);
+
+      this.login.emit(cred);
+      this.store$.dispatch(AuthActions.authLogin(cred));
+    }
   }
 
 }

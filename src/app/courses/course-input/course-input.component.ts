@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Course} from '../course';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CourseService} from '../course-service';
+import {CourseDataService} from '../course-data.service';
+import {Observable, of} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-vc-course-input',
@@ -10,35 +12,40 @@ import {CourseService} from '../course-service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseInputComponent implements OnInit {
-  @Input()
-  course: Course;
+
+  course$: Observable<Course>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: CourseService
+    private service: CourseDataService
   ) {
   }
 
   ngOnInit() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.service.getById(id).subscribe(c => {
-        this.course = c;
-        this.route.snapshot.data.breadcrumb = this.course.name;
-      });
+      this.course$ = this.service.getByKey(id)
+        .pipe(
+          tap(c => {
+            this.route.snapshot.data.breadcrumb = c.name;
+          }));
     } else {
-      this.course = new Course();
+      this.course$ = of(new Course());
     }
   }
 
-  saveClick() {
+  saveClick(course: Course) {
 
-    this.service.save(this.course);
-    this.router.navigate(['..']);
+    let s;
+    if (course.id) {
+      s = this.service.update(course);
+    } else {
+      s = this.service.add(course);
+    }
+    s.subscribe(_ => {
+      this.router.navigate(['..']);
+    });
   }
 
-  getBreadCrumb(): string {
-    return this.course.name;
-  }
 }

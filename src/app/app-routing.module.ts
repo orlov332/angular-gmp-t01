@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginComponent} from './auth/login/login.component';
+import {StoreModule} from '@ngrx/store';
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 
 const routes: Routes = [
@@ -19,11 +21,17 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    StoreModule.forRoot({
+      router: routerReducer,
+    }),
     RouterModule.forRoot(
       routes,
       {
-        enableTracing: true, // <-- debugging purposes only
-      })],
+        enableTracing: false, // <-- debugging purposes only
+      }),
+    // Connects RouterModule with StoreModule
+    StoreRouterConnectingModule.forRoot(),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../auth/user';
-import {AuthService} from '../../auth/auth.service';
 import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {selectAuthIsLoggedIn, selectAuthUser} from '../../auth/store/auth.selectors';
+import * as AuthActions from '../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-vc-shell',
@@ -10,24 +12,18 @@ import {Observable} from 'rxjs';
 })
 export class ShellComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private store$: Store<any>) {
   }
 
-  get authUser$(): Observable<User> {
-    return this.authService.userInfo$;
-  }
+  readonly authUser$: Observable<User> = this.store$.pipe(select(selectAuthUser));
+  readonly isAuth$: Observable<boolean> = this.store$.pipe(select(selectAuthIsLoggedIn));
 
-  get isAuth$(): Observable<boolean> {
-    return this.authService.isLoggedIn$;
-  }
-
-  login(cred: { email: string; password: string }) {
-    this.authService.login(cred.email, cred.password)
-      .subscribe();
+  login(cred: { login: string; password: string }) {
+    this.store$.dispatch(AuthActions.authLogin(cred));
   }
 
   logout() {
-    this.authService.logout();
+    this.store$.dispatch(AuthActions.authLogout());
   }
 
   ngOnInit(): void {

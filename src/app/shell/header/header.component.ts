@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from '../../auth/user';
-import {AuthService} from '../../auth/auth.service';
-import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -21,7 +19,7 @@ export class HeaderComponent implements OnInit {
   @Output()
   logout = new EventEmitter();
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -29,7 +27,5 @@ export class HeaderComponent implements OnInit {
 
   doLogout() {
     this.logout.emit();
-    this.authService.logout();
-    this.router.navigateByUrl('/login');
   }
 }

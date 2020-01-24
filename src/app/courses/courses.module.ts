@@ -17,6 +17,8 @@ import {
 import {FormsModule} from '@angular/forms';
 import {CoursesRoutingModule} from './courses-routing.module';
 import {CourseComponent} from './course/course.component';
+import {EntityDefinitionService} from '@ngrx/data';
+import {coursesEntityMetadata} from './store/entity-metadata';
 
 
 @NgModule({
@@ -35,7 +37,15 @@ import {CourseComponent} from './course/course.component';
     MatFormFieldModule,
     MatInputModule,
     CoursesRoutingModule,
+  ],
+  providers: [
+    // {provide: PLURAL_NAMES_TOKEN, multi: true, useValue: coursesPluralNames}
+    // {provide: Pluralizer, useClass: CoursesPluralizer}
   ]
 })
+
 export class CoursesModule {
+  constructor(eds: EntityDefinitionService) {
+    eds.registerMetadataMap(coursesEntityMetadata);
+  }
 }

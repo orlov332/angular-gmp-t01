@@ -10,15 +10,16 @@ import {
   UrlSegment
 } from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthService} from './auth.service';
 import {tap} from 'rxjs/operators';
+import {select, Store} from '@ngrx/store';
+import {selectAuthIsLoggedIn} from './store/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private store$: Store<any>, private router: Router) {
   }
 
   canActivate(
@@ -45,17 +46,17 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   checkLogin(url: string): Observable<boolean> {
     // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
+    // this.authService.redirectUrl = url;
 
-    return this.authService.isLoggedIn$
-      .pipe(
-        tap(isLogged => {
-          console.log(`isLoggedIn$ tapped with ${isLogged}`);
-          if (!isLogged) {
-            console.log('Navigate to the login page with extras');
-            this.router.navigate(['/login']);
-          }
-        })
-      );
+    return this.store$.pipe(
+      select(selectAuthIsLoggedIn),
+      tap(isLogged => {
+        console.log(`isLoggedIn$ tapped with ${isLogged}`);
+        if (!isLogged) {
+          console.log('Navigate to the login page with extras');
+          this.router.navigate(['/login']);
+        }
+      })
+    );
   }
 }

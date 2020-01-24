@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import * as AuthActions from '../store/auth.actions';
 
 @Component({
   selector: 'app-vc-login',
@@ -14,28 +14,18 @@ export class LoginComponent implements OnInit {
   password: string;
 
   @Output()
-  login = new EventEmitter<{ email: string, password: string }>();
+  login = new EventEmitter<{ login: string, password: string }>();
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private store$: Store<any>) {
   }
 
   ngOnInit() {
   }
 
   doLogin() {
-    const cred = {email: this.userEmail, password: this.password};
+    const cred = {login: this.userEmail, password: this.password};
     this.login.emit(cred);
-    this.authService.login(this.userEmail, this.password)
-      .subscribe(isLoggedIn => {
-        if (isLoggedIn) {
-          // Get the redirect URL from our auth service
-          // If no redirect has been set, use the default
-          const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
-
-          console.log('Redirect the user to' + redirect);
-          this.router.navigateByUrl(redirect);
-        }
-      });
+    this.store$.dispatch(AuthActions.authLogin(cred));
   }
 
 }

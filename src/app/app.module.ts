@@ -11,6 +11,24 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoaderComponent} from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material';
 import {LoaderInterceptor} from './loader/loader.interceptor';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment as env, environment} from '../environments/environment';
+import {AuthModule} from './auth/auth.module';
+import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
+
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: env.apiBase,
+  timeout: 3000, // request timeout
+  entityHttpResourceUrls: {
+    Course: {
+      entityResourceUrl: `${env.apiBase}/courses/`,
+      collectionResourceUrl: `${env.apiBase}/courses/`,
+    }
+  }
+};
+
 
 @NgModule({
   declarations: [
@@ -23,11 +41,21 @@ import {LoaderInterceptor} from './loader/loader.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot({}),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    AuthModule,
     WidgetModule,
     ShellModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
+    {provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig},
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

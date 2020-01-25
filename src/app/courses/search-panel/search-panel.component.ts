@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {Observable, Subscriber, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-vc-search-panel',
@@ -10,16 +11,16 @@ import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
 
-  value: string;
-  private subscriber: Subscriber<string>;
   private subscription: Subscription;
 
   @Output()
   search = new EventEmitter();
 
+  searchCtrl = new FormControl();
+
   constructor() {
     this.subscription =
-      new Observable<string>(subscriber => this.subscriber = subscriber)
+      this.searchCtrl.valueChanges
         .pipe(
           debounceTime(500), // wait 500ms after the last event before emitting last event
           distinctUntilChanged(), // only emit if value is different from previous value
@@ -29,10 +30,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  }
-
-  changed(text: string) {
-    this.subscriber.next(text);
   }
 
   ngOnDestroy(): void {

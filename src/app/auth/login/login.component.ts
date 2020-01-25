@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as AuthActions from '../store/auth.actions';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-vc-login',
@@ -11,32 +11,30 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  userEmail: string;
-  password: string;
-
   @Output()
-  login = new EventEmitter<{ login: string, password: string }>();
+  doLogin = new EventEmitter<{ login: string, password: string }>();
 
   form: FormGroup;
+  login = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
-  constructor(private fb: FormBuilder,
-              private store$: Store<any>) {
+  constructor(private store$: Store<any>) {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      login: ['', [Validators.required, Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+    this.form = new FormGroup({
+      login: this.login,
+      password: this.password,
     });
   }
 
-  doLogin() {
+  submitLogin() {
     if (this.form.valid) {
       const cred = this.form.value;
 
       console.log(cred);
 
-      this.login.emit(cred);
+      this.doLogin.emit(cred);
       this.store$.dispatch(AuthActions.authLogin(cred));
     }
   }

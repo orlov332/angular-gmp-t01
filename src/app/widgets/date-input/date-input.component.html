@@ -1,0 +1,9 @@
+<div>
+  <input matInput
+         [formControl]="dateInput"
+         [matDatepicker]="courseDatePicker"
+         type="datetime"
+         [required]="required">
+  <mat-datepicker-toggle matSuffix [for]="courseDatePicker"></mat-datepicker-toggle>
+  <mat-datepicker #courseDatePicker></mat-datepicker>
+</div>

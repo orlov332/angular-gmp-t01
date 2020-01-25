@@ -1,4 +1,4 @@
-<form class="example-form" [formGroup]="form" (ngSubmit)="doLogin()">
+<form class="example-form" [formGroup]="form" (ngSubmit)="submitLogin()">
 
   <mat-card class="example-card">
 
@@ -15,7 +15,14 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="User E-Mail" formControlName="login" type="email" name="user-email" required>
+              <input matInput
+                     [formControl]="login"
+                     placeholder="User E-Mail"
+                     type="email"
+                     name="user-email"
+                     required
+                     minlength="6">
+              <mat-error *ngIf="login.invalid">{{login.errors | json}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -23,8 +30,14 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" formControlName="password" type="password" name="user-password"
-                     required>
+              <input matInput
+                     placeholder="Password"
+                     [formControl]="password"
+                     type="password"
+                     name="user-password"
+                     required
+                     minlength="6">
+              <mat-error *ngIf="password.invalid">{{password.errors | json}}</mat-error>
             </mat-form-field>
           </td>
         </tr>

@@ -1,3 +1,9 @@
+export interface Author {
+  id: number;
+  name: string;
+  lastName: string;
+}
+
 export class Course {
 
   constructor(
@@ -7,6 +13,7 @@ export class Course {
     public length?: number,
     public description?: string,
     public isTopRated = false,
+    public authors?: Author[],
   ) {
   }
 

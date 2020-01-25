@@ -1,12 +1,13 @@
 <mat-form-field class="example-form-field">
-  <input [(ngModel)]="value" (ngModelChange)="changed($event)"
-         matInput
-         type="text"
-         placeholder="Text to search"
-         data-testid="search-input">
+  <input
+    [formControl]="searchCtrl"
+    matInput
+    type="text"
+    placeholder="Text to search"
+    data-testid="search-input">
 
-  <button *ngIf="value"
-          (click)="value=''"
+  <button *ngIf="searchCtrl.value"
+          (click)="searchCtrl.setValue('')"
           mat-button
           matSuffix
           mat-icon-button

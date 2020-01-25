@@ -1,5 +1,5 @@
 import {Directive, ElementRef, Input, OnChanges} from '@angular/core';
-import {differenceInCalendarDays, isFuture} from 'date-fns';
+import {differenceInCalendarDays, isFuture, parseISO} from 'date-fns';
 
 
 export const FRESH_DAYS_BORDER = 14;
@@ -15,16 +15,16 @@ export class HighlightByTimelineDirective implements OnChanges {
   }
 
   @Input('appVcHighlightByTimeline')
-  creationDate: Date;
+  creationDate;
 
   ngOnChanges() {
     const now = new Date();
 
     let borderColor = this.element.nativeElement.style.borderColor;
-    if (isFuture(this.creationDate)) {
+    if (isFuture(parseISO(this.creationDate))) {
       // Upcoming course
       borderColor = UPCOMING_COLOR;
-    } else if (differenceInCalendarDays(now, this.creationDate) <= FRESH_DAYS_BORDER) {
+    } else if (differenceInCalendarDays(now, parseISO(this.creationDate)) <= FRESH_DAYS_BORDER) {
       //  Fresh course
       borderColor = FRESH_COLOR;
     }

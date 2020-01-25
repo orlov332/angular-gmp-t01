@@ -1,21 +1,28 @@
-<mat-card class="example-card">
+<form class="example-form" [formGroup]="form" (ngSubmit)="submitLogin()">
 
-  <mat-card-header>
+  <mat-card class="example-card">
 
-    <mat-card-title>Login</mat-card-title>
+    <mat-card-header>
 
-  </mat-card-header>
+      <mat-card-title>Login</mat-card-title>
 
-  <mat-card-content>
+    </mat-card-header>
 
-    <form class="example-form">
+    <mat-card-content>
 
       <table class="example-full-width">
 
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="User E-Mail" [(ngModel)]="userEmail" type="email" name="user-email" required>
+              <input matInput
+                     [formControl]="login"
+                     placeholder="User E-Mail"
+                     type="email"
+                     name="user-email"
+                     required
+                     minlength="6">
+              <mat-error *ngIf="login.invalid">{{login.errors | json}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -23,20 +30,26 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="user-password"
-                     required>
+              <input matInput
+                     placeholder="Password"
+                     [formControl]="password"
+                     type="password"
+                     name="user-password"
+                     required
+                     minlength="6">
+              <mat-error *ngIf="password.invalid">{{password.errors | json}}</mat-error>
             </mat-form-field>
           </td>
         </tr>
 
       </table>
 
-    </form>
+    </mat-card-content>
 
-  </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" [disabled]="!form.valid" color="primary">Login</button>
+    </mat-card-actions>
 
-  <mat-card-actions>
-    <button mat-raised-button (click)="doLogin()" color="primary">Login</button>
-  </mat-card-actions>
+  </mat-card>
 
-</mat-card>
+</form>

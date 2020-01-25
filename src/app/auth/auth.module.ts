@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {MatButtonModule, MatCardModule, MatInputModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {AuthInterceptor} from './auth.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
@@ -17,7 +17,7 @@ import {AuthEffects} from './store/auth.effects';
     CommonModule,
     MatCardModule,
     MatInputModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects])

@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WidgetModule} from './widgets/widget.module';
 import {ShellModule} from './shell/shell.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {LoaderComponent} from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material';
 import {LoaderInterceptor} from './loader/loader.interceptor';
@@ -17,6 +17,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment as env, environment} from '../environments/environment';
 import {AuthModule} from './auth/auth.module';
 import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: env.apiBase,
@@ -53,6 +55,13 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     WidgetModule,
     ShellModule,
     AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     {provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig},
@@ -61,4 +70,9 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

@@ -15,6 +15,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {ShellComponent} from './shell/shell.component';
 import {RouterModule} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {RouterModule} from '@angular/router';
     MatInputModule,
     FormsModule,
     RouterModule,
+    TranslateModule,
   ]
 })
 export class ShellModule {

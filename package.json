@@ -7,7 +7,8 @@
     "build": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "extract-i18n": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json --format-indentation '  ' --format namespaced-json --key-as-default-value"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +43,7 @@
     "@angular/cli": "~8.3.20",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
+    "@biesbjerg/ngx-translate-extract": "^4.2.0",
     "@ngrx/schematics": "^8.6.0",
     "@testing-library/angular": "^8.0.3",
     "@types/jasmine": "~3.3.8",

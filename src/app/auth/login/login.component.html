@@ -4,7 +4,7 @@
 
     <mat-card-header>
 
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>{{'Login' | translate}}</mat-card-title>
 
     </mat-card-header>
 
@@ -17,7 +17,7 @@
             <mat-form-field class="example-full-width">
               <input matInput
                      [formControl]="login"
-                     placeholder="User E-Mail"
+                     [placeholder]="'User E-Mail' | translate"
                      type="email"
                      name="user-email"
                      required
@@ -31,7 +31,7 @@
           <td>
             <mat-form-field class="example-full-width">
               <input matInput
-                     placeholder="Password"
+                     [placeholder]="'Password' | translate"
                      [formControl]="password"
                      type="password"
                      name="user-password"

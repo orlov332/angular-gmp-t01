@@ -10,6 +10,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatSelectModule,
   MatToolbarModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
@@ -37,6 +38,7 @@ import {TranslateModule} from '@ngx-translate/core';
     FormsModule,
     RouterModule,
     TranslateModule,
+    MatSelectModule,
   ]
 })
 export class ShellModule {

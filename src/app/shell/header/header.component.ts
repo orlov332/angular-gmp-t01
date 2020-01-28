@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   @Output()
   logout = new EventEmitter();
 
+  language = 'en';
+
   constructor() {
   }
 

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from '../../auth/user';
 import {Observable} from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-vc-header',
@@ -9,6 +10,15 @@ import {Observable} from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  get language(): string {
+    // console.log(`Current language: ${this.translate.currentLang}`);
+    return this.translate.currentLang;
+  }
+
+  set language(value: string) {
+    this.translate.use(value);
+  }
 
   @Input()
   isAuth$: Observable<boolean>;
@@ -19,7 +29,7 @@ export class HeaderComponent implements OnInit {
   @Output()
   logout = new EventEmitter();
 
-  constructor() {
+  constructor(private translate: TranslateService) {
   }
 
   ngOnInit() {

@@ -6,7 +6,7 @@
     <span class="fill-remaining-space"></span>
     <button mat-raised-button color="primary" routerLink="./new">
       <mat-icon>add</mat-icon>
-      Add course
+      {{'Add course'  | translate}}
     </button>
   </mat-toolbar>
 
@@ -20,7 +20,7 @@
     mat-raised-button
     class="load-more-button"
     data-testid="load-more-btn">
-    Load more...
+    {{'Load more...' | translate}}
   </button>
 
   <!--  <p *ngIf="!courses$ || courses$.size === 0"-->

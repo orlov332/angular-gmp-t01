@@ -9,6 +9,7 @@ import {StoreModule} from '@ngrx/store';
 import * as fromAuth from './store/auth.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './store/auth.effects';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {AuthEffects} from './store/auth.effects';
     ReactiveFormsModule,
     MatButtonModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature([AuthEffects]),
+    TranslateModule
   ],
   exports: [LoginComponent],
   providers: [

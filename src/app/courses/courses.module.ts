@@ -22,10 +22,12 @@ import {CourseComponent} from './course/course.component';
 import {EntityDefinitionService} from '@ngrx/data';
 import {coursesEntityMetadata} from './store/entity-metadata';
 import {AuthorInputComponent} from './author-input/author-input.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
-  declarations: [CourseListComponent, CourseListItemComponent, SearchPanelComponent, CourseInputComponent, CourseComponent, AuthorInputComponent,
+  declarations: [CourseListComponent, CourseListItemComponent, SearchPanelComponent,
+    CourseInputComponent, CourseComponent, AuthorInputComponent,
   ],
   entryComponents: [CourseInputComponent],
   imports: [
@@ -42,9 +44,9 @@ import {AuthorInputComponent} from './author-input/author-input.component';
     CoursesRoutingModule,
     MatChipsModule,
     MatAutocompleteModule,
+    TranslateModule.forChild(),
   ],
-  providers: [
-  ]
+  providers: []
 })
 
 export class CoursesModule {

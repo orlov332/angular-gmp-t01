@@ -3,7 +3,7 @@
     [formControl]="searchCtrl"
     matInput
     type="text"
-    placeholder="Text to search"
+    [placeholder]="'Text to search' | translate"
     data-testid="search-input">
 
   <button *ngIf="searchCtrl.value"
